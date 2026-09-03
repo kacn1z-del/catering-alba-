@@ -76,7 +76,7 @@ const SERVICIOS = [
   },
 ]
 
-const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Postres', 'Bebidas']
+const CATEGORIAS = ['Todos', 'Dip', 'Entrada', 'Guarniciones', 'Postres']
 
 const CARRUSEL = [
   { img: '/galeria/evento-05.jpeg', etiqueta: 'Bodas', titulo: 'Montajes de boda' },
@@ -87,14 +87,113 @@ const CARRUSEL = [
 ]
 
 const MENU = [
-  { nombre: 'Carpaccio de res', categoria: 'Entradas', desc: 'Finas láminas de res, alcaparras, parmesano y aceite de oliva.' },
-  { nombre: 'Tartaleta de camarón', categoria: 'Entradas', desc: 'Base crocante, camarón salteado y salsa cítrica.' },
-  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto y puré de papa trufado.' },
-  { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.' },
-  { nombre: 'Risotto de camarones', categoria: 'Platos fuertes', desc: 'Arroz cremoso, camarones frescos y toque de limón.' },
-  { nombre: 'Mousse de maracuyá', categoria: 'Postres', desc: 'Textura ligera y aireada con reducción de frutos de la pasión.' },
-  { nombre: 'Mesa de postres finos', categoria: 'Postres', desc: 'Selección de mini postres: tartaletas, macarons y brownies.' },
-  { nombre: 'Barra de cócteles sin alcohol', categoria: 'Bebidas', desc: 'Mocktails de temporada preparados al momento.' },
+  { nombre: 'Atún con mayonesa', categoria: 'Dip', desc: 'Acompañado con tortillitas tipo chips.' },
+  { nombre: 'Frijoles molidos', categoria: 'Dip', desc: 'Acompañado con tortillitas tipo chips.' },
+  { nombre: 'Dulce de frutas y queso crema', categoria: 'Dip', desc: 'Acompañado con galletas tipo boquitas.' },
+  { nombre: 'Sensación de piña', categoria: 'Dip', desc: 'Acompañado con galletas tipo boquitas.' },
+  { nombre: 'Sopa azteca', categoria: 'Entrada', desc: 'Acompañada con aguacate, queso y tortillas tostadas.' },
+  { nombre: 'Garbanzos con pollo o cerdo', categoria: 'Entrada', desc: '' },
+  { nombre: 'Frijoles blancos con pollo o cerdo', categoria: 'Entrada', desc: '' },
+  { nombre: 'Crema de ayote, brócoli o papa', categoria: 'Entrada', desc: '' },
+  { nombre: 'Arroz blanco', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con maíz dulce', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con culantro', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz jardinero', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con almendras', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Puré de papa', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arracache', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Verduras salteadas a la mantequilla', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Papitas redondas a la mantequilla', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Escabeche en salsa de tomate', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Ensalada verde', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Ensalada mixta', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Ensalada verde con frutas', categoria: 'Guarniciones', desc: 'Opción con costo adicional.' },
+  { nombre: 'Ensalada rusa', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Ensalada fría de caracolitos', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: '' },
+  { nombre: 'Tentación de mora', categoria: 'Postres', desc: '' },
+  { nombre: 'Postre de frutas', categoria: 'Postres', desc: '' },
+  { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: '' },
+  { nombre: 'Postre de marmelos', categoria: 'Postres', desc: '' },
+  { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: '' },
+  { nombre: 'Cheesecake de oreo', categoria: 'Postres', desc: '' },
+  { nombre: 'Delicia de piña', categoria: 'Postres', desc: '' },
+]
+
+const OCASIONES = ['Bodas', 'Quinceaños', 'Cumpleaños', 'Graduaciones', 'Eventos corporativos', 'Aniversarios y más']
+
+const PAQUETE_DETALLES = [
+  {
+    id: 'brindis',
+    titulo: 'Brindis',
+    items: ['Vino espumoso sin alcohol.'],
+  },
+  {
+    id: 'cafe',
+    titulo: 'Bocadillos para el café',
+    items: [
+      'Repostería dulce (2 unidades).',
+      'Repostería salada (1 unidad).',
+      'Café, variedad de tés, aguadulce.',
+      'Leche, crema, azúcar y sustituto de azúcar.',
+    ],
+  },
+  {
+    id: 'plato-fuerte',
+    titulo: 'Plato fuerte',
+    nota: 'El paquete incluye tres (3) guarniciones y una (1) carne, a escoger de nuestra lista de guarniciones.',
+    items: [],
+  },
+  {
+    id: 'decoracion',
+    titulo: 'Decoración incluida',
+    items: [
+      'Mantelería base (blanca, negra, azul marino o champagne).',
+      'Cubresillas.',
+      'Manteles.',
+      'Manteles de colores (variedad de colores).',
+    ],
+  },
+  {
+    id: 'color-escoger',
+    titulo: 'Color a escoger',
+    items: [
+      'Servilletas de tela (color a escoger).',
+      'Sobremanteles.',
+      'Sacos decorativos para botellas.',
+      'Lazos para las sillas.',
+      'Telas decorativas para techo.',
+      'Rincón de fotografías.',
+    ],
+  },
+  {
+    id: 'opcionales',
+    titulo: 'Opcionales',
+    nota: 'Las opciones marcadas tienen un costo adicional.',
+    items: [
+      'Cortinaje decorativo.',
+      'Decoración personalizada según la temática del evento.',
+      'Manteles de brillos (variedad de colores).',
+      'Arreglos florales.',
+      'Bases decorativas.',
+      'Porta números de mesa.',
+      'Espejo de bienvenida.',
+      'Luces.',
+      'Caballete.',
+      'Baúl de dinero.',
+    ],
+  },
+  {
+    id: 'servicio-incluye',
+    titulo: 'El servicio incluye',
+    items: [
+      'Refresco gaseoso variado y té (3 refrescos por mesa en mesas de 12 personas, o 2 refrescos por mesa en mesas de 8 personas).',
+      'Vajilla, cristalería y servilleteros.',
+      'Hieleras para las mesas, con su respectivo hielo.',
+      'Personal de servicio (saloneros).',
+      'Chafing dish para mantener los alimentos calientes, estilo buffet.',
+    ],
+  },
 ]
 
 const BENEFICIOS = [
@@ -317,6 +416,14 @@ function IconFlecha({ direccion = 'izq' }) {
   return (
     <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
       {direccion === 'izq' ? <path d="M15 5 8 12l7 7" /> : <path d="M9 5l7 7-7 7" />}
+    </svg>
+  )
+}
+
+function IconChevron() {
+  return (
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M6 9l6 6 6-6" />
     </svg>
   )
 }
@@ -821,7 +928,19 @@ function Menu() {
               <span className="ojo-etiqueta">— Nuestra propuesta</span>
               <h2 className="titulo-seccion">Menú Catering Alba</h2>
             </div>
-            <p className="nota-seccion">Una muestra de nuestras opciones. El menú final se ajusta a su evento.</p>
+            <p className="nota-seccion">
+              Nos especializamos en crear experiencias gastronómicas y de servicio para todo tipo de
+              celebraciones. Nuestro objetivo es ofrecer un evento elegante, organizado y memorable,
+              adaptándonos a las necesidades y preferencias de cada cliente.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="fila-ocasiones">
+            {OCASIONES.map((o) => (
+              <span key={o} className="ocasion-etiqueta">{o}</span>
+            ))}
           </div>
         </Reveal>
 
@@ -854,13 +973,42 @@ function Menu() {
                   <div className="tarjeta-puesto">
                     <span className="tarjeta-puesto__categoria">{m.categoria}</span>
                     <h3 className="tarjeta-puesto__nombre">{m.nombre}</h3>
-                    <p className="tarjeta-puesto__desc">{m.desc}</p>
+                    {m.desc && <p className="tarjeta-puesto__desc">{m.desc}</p>}
                   </div>
                 </Reveal>
               ))}
             </div>
           </div>
         </div>
+
+        <Reveal>
+          <div className="detalle-paquete">
+            <div className="detalle-paquete__cabecera">
+              <span className="ojo-etiqueta">— El paquete incluye</span>
+              <h3 className="titulo-seccion titulo-seccion--pequeno">Detalles del paquete</h3>
+            </div>
+            <div className="acordeon">
+              {PAQUETE_DETALLES.map((cat) => (
+                <details key={cat.id} className="acordeon__item">
+                  <summary className="acordeon__resumen">
+                    <span>{cat.titulo}</span>
+                    <span className="acordeon__icono"><IconChevron /></span>
+                  </summary>
+                  <div className="acordeon__cuerpo">
+                    {cat.nota && <p className="acordeon__nota">{cat.nota}</p>}
+                    {cat.items.length > 0 && (
+                      <ul className="acordeon__lista">
+                        {cat.items.map((it) => (
+                          <li key={it}>{it}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
