@@ -672,37 +672,30 @@ function Menu() {
           <Carrusel />
         </Reveal>
 
-        <div className="tienda-layout">
-          <Reveal className="tienda-layout__aside">
-            <div className="tienda-categorias">
-              <span className="tienda-categorias__titulo">Categorías</span>
-              <div className="tienda-categorias__lista">
-                {CATEGORIAS.map((c) => (
-                  <button
-                    key={c}
-                    className={`tienda-categorias__item ${filtro === c ? 'tienda-categorias__item--activo' : ''}`}
-                    onClick={() => setFiltro(c)}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="tienda-layout__contenido">
-            <div className="rejilla-puestos">
-              {items.map((m, i) => (
-                <Reveal key={m.nombre} delay={(i % 4) * 80}>
-                  <div className="tarjeta-puesto">
-                    <span className="tarjeta-puesto__categoria">{m.categoria}</span>
-                    <h3 className="tarjeta-puesto__nombre">{m.nombre}</h3>
-                    <p className="tarjeta-puesto__desc">{m.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+        <div className="cintas-nav-envoltura">
+          <div className="cintas-nav">
+            {CATEGORIAS.map((c) => (
+              <button
+                key={c}
+                className={`cinta ${filtro === c ? 'cinta--activa' : ''}`}
+                onClick={() => setFiltro(c)}
+              >
+                {c}
+              </button>
+            ))}
           </div>
+        </div>
+
+        <div className="rejilla-puestos">
+          {items.map((m, i) => (
+            <Reveal key={m.nombre} delay={(i % 4) * 80}>
+              <div className="tarjeta-puesto">
+                <span className="tarjeta-puesto__categoria">{m.categoria}</span>
+                <h3 className="tarjeta-puesto__nombre">{m.nombre}</h3>
+                <p className="tarjeta-puesto__desc">{m.desc}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
