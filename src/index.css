@@ -1050,6 +1050,25 @@ a {
   border-radius: 16px;
   padding: 26px 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.tarjeta-puesto__foto {
+  margin: -26px -24px 18px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.tarjeta-puesto__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tarjeta-puesto:hover .tarjeta-puesto__foto img {
+  transform: scale(1.05);
 }
 
 .tarjeta-puesto:hover {
