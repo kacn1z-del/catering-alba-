@@ -83,14 +83,14 @@ const CARRUSEL = [
 ]
 
 const MENU = [
-  { nombre: 'Carpaccio de res', categoria: 'Entradas', desc: 'Finas láminas de res, alcaparras, parmesano y aceite de oliva.' },
-  { nombre: 'Tartaleta de camarón', categoria: 'Entradas', desc: 'Base crocante, camarón salteado y salsa cítrica.' },
-  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto y puré de papa trufado.' },
-  { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.' },
-  { nombre: 'Risotto de camarones', categoria: 'Platos fuertes', desc: 'Arroz cremoso, camarones frescos y toque de limón.' },
-  { nombre: 'Mousse de maracuyá', categoria: 'Postres', desc: 'Textura ligera y aireada con reducción de frutos de la pasión.' },
-  { nombre: 'Mesa de postres finos', categoria: 'Postres', desc: 'Selección de mini postres: tartaletas, macarons y brownies.' },
-  { nombre: 'Barra de cócteles sin alcohol', categoria: 'Bebidas', desc: 'Mocktails de temporada preparados al momento.' },
+  { nombre: 'Carpaccio de res', categoria: 'Entradas', desc: 'Finas láminas de res, alcaparras, parmesano y aceite de oliva.', imagen: '/menu/carpaccio-res.jpg' },
+  { nombre: 'Tartaleta de camarón', categoria: 'Entradas', desc: 'Base crocante, camarón salteado y salsa cítrica.', imagen: '/menu/tartaleta-camaron.jpg' },
+  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto y puré de papa trufado.', imagen: '/menu/lomito-vino.jpg' },
+  { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.', imagen: '/menu/pollo-relleno.jpg' },
+  { nombre: 'Risotto de camarones', categoria: 'Platos fuertes', desc: 'Arroz cremoso, camarones frescos y toque de limón.', imagen: '/menu/risotto-camarones.jpg' },
+  { nombre: 'Mousse de maracuyá', categoria: 'Postres', desc: 'Textura ligera y aireada con reducción de frutos de la pasión.', imagen: '/menu/mousse-maracuya.jpg' },
+  { nombre: 'Mesa de postres finos', categoria: 'Postres', desc: 'Selección de mini postres: tartaletas, macarons y brownies.', imagen: '/menu/mesa-postres.jpg' },
+  { nombre: 'Barra de cócteles sin alcohol', categoria: 'Bebidas', desc: 'Mocktails de temporada preparados al momento.', imagen: '/menu/barra-cocteles.jpg' },
 ]
 
 const BENEFICIOS = [
@@ -690,6 +690,11 @@ function Menu() {
           {items.map((m, i) => (
             <Reveal key={m.nombre} delay={(i % 4) * 80}>
               <div className="tarjeta-puesto">
+                {m.imagen && (
+                  <div className="tarjeta-puesto__foto">
+                    <img src={m.imagen} alt={m.nombre} />
+                  </div>
+                )}
                 <span className="tarjeta-puesto__categoria">{m.categoria}</span>
                 <h3 className="tarjeta-puesto__nombre">{m.nombre}</h3>
                 <p className="tarjeta-puesto__desc">{m.desc}</p>
