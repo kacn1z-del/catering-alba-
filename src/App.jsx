@@ -800,6 +800,158 @@ function Galeria() {
 }
 
 /* =================================================================
+   FORMULARIO DE CONTRATACIÓN
+   ================================================================= */
+
+const TIPOS_EVENTO = ['Boda', 'Evento corporativo', 'Cumpleaños', 'Cóctel / recepción', 'Otro']
+
+function FormularioContratar() {
+  const [datos, setDatos] = useState({
+    nombre: '',
+    telefono: '',
+    correo: '',
+    tipoEvento: '',
+    fecha: '',
+    invitados: '',
+    lugar: '',
+    mensaje: '',
+  })
+
+  const actualizar = (campo) => (e) => {
+    setDatos((prev) => ({ ...prev, [campo]: e.target.value }))
+  }
+
+  const listoParaEnviar = datos.nombre.trim() !== '' && datos.telefono.trim() !== ''
+
+  const enviarPorWhatsApp = (e) => {
+    e.preventDefault()
+    if (!listoParaEnviar) return
+
+    const lineas = [
+      'Hola, quisiera contratar el servicio de Catering Alba. Estos son mis datos:',
+      '',
+      `Nombre: ${datos.nombre}`,
+      `Teléfono: ${datos.telefono}`,
+    ]
+    if (datos.correo) lineas.push(`Correo: ${datos.correo}`)
+    if (datos.tipoEvento) lineas.push(`Tipo de evento: ${datos.tipoEvento}`)
+    if (datos.fecha) lineas.push(`Fecha del evento: ${datos.fecha}`)
+    if (datos.invitados) lineas.push(`Número de invitados: ${datos.invitados}`)
+    if (datos.lugar) lineas.push(`Lugar: ${datos.lugar}`)
+    if (datos.mensaje) lineas.push('', `Detalles adicionales: ${datos.mensaje}`)
+
+    const mensaje = lineas.join('\n')
+    window.open(`https://wa.me/${CONTACTO.telefonoWa}?text=${encodeURIComponent(mensaje)}`, '_blank')
+  }
+
+  return (
+    <section id="formulario" className="seccion seccion--oscura">
+      <div className="envoltura">
+        <Reveal>
+          <div className="cabecera-seccion">
+            <div>
+              <span className="ojo-etiqueta ojo-etiqueta--claro">— Contrate su evento</span>
+              <h2 className="titulo-seccion titulo-seccion--claro">Cuéntenos de su evento</h2>
+            </div>
+            <p className="nota-seccion nota-seccion--clara">
+              Complete sus datos y le escribimos por WhatsApp con una propuesta.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <form className="formulario" onSubmit={enviarPorWhatsApp}>
+            <div className="formulario__rejilla">
+              <label className="formulario__campo">
+                <span>Nombre completo *</span>
+                <input
+                  type="text"
+                  value={datos.nombre}
+                  onChange={actualizar('nombre')}
+                  placeholder="Su nombre"
+                  required
+                />
+              </label>
+
+              <label className="formulario__campo">
+                <span>Teléfono *</span>
+                <input
+                  type="tel"
+                  value={datos.telefono}
+                  onChange={actualizar('telefono')}
+                  placeholder="8888-8888"
+                  required
+                />
+              </label>
+
+              <label className="formulario__campo">
+                <span>Correo electrónico</span>
+                <input
+                  type="email"
+                  value={datos.correo}
+                  onChange={actualizar('correo')}
+                  placeholder="correo@ejemplo.com"
+                />
+              </label>
+
+              <label className="formulario__campo">
+                <span>Tipo de evento</span>
+                <select value={datos.tipoEvento} onChange={actualizar('tipoEvento')}>
+                  <option value="">Seleccione una opción</option>
+                  {TIPOS_EVENTO.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="formulario__campo">
+                <span>Fecha del evento</span>
+                <input type="date" value={datos.fecha} onChange={actualizar('fecha')} />
+              </label>
+
+              <label className="formulario__campo">
+                <span>Número de invitados</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={datos.invitados}
+                  onChange={actualizar('invitados')}
+                  placeholder="Ej. 80"
+                />
+              </label>
+
+              <label className="formulario__campo formulario__campo--ancho">
+                <span>Lugar del evento</span>
+                <input
+                  type="text"
+                  value={datos.lugar}
+                  onChange={actualizar('lugar')}
+                  placeholder="Salón, dirección o zona"
+                />
+              </label>
+
+              <label className="formulario__campo formulario__campo--ancho">
+                <span>Detalles adicionales</span>
+                <textarea
+                  rows={4}
+                  value={datos.mensaje}
+                  onChange={actualizar('mensaje')}
+                  placeholder="Menú deseado, presupuesto aproximado, alguna solicitud especial..."
+                />
+              </label>
+            </div>
+
+            <Boton as="button" type="submit" className="boton--claro" disabled={!listoParaEnviar}>
+              <IconWhatsApp /> Enviar por WhatsApp
+            </Boton>
+          </form>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* =================================================================
    CONTACTO
    ================================================================= */
 
@@ -868,6 +1020,36 @@ function Pie() {
   )
 }
 
+function IconMaletin() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <rect x="3" y="7.5" width="18" height="12" rx="2" />
+      <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" />
+      <path d="M3 12.5h18" />
+    </svg>
+  )
+}
+
+/* =================================================================
+   BOTÓN FLOTANTE — CONTRATAR
+   ================================================================= */
+
+function BotonContratar() {
+  return (
+    <a
+      className="flotante-contratar"
+      href="#formulario"
+      onClick={(e) => {
+        e.preventDefault()
+        document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }}
+    >
+      <IconMaletin />
+      <span>Contratar</span>
+    </a>
+  )
+}
+
 /* =================================================================
    APP
    ================================================================= */
@@ -890,8 +1072,10 @@ export default function App() {
       <EligeTuServicio />
       <Menu />
       <Galeria />
+      <FormularioContratar />
       <Contacto />
       <Pie />
+      <BotonContratar />
     </div>
   )
 }
