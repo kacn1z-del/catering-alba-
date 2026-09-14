@@ -1224,6 +1224,89 @@ a {
   }
 }
 
+/* ---------- formulario de contratación ---------- */
+
+.formulario {
+  max-width: 760px;
+}
+
+.formulario__rejilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+@media (min-width: 640px) {
+  .formulario__rejilla {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.formulario__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.formulario__campo--ancho {
+  grid-column: 1 / -1;
+}
+
+.formulario__campo span {
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hueso);
+  opacity: 0.6;
+}
+
+.formulario__campo input,
+.formulario__campo select,
+.formulario__campo textarea {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--borde-claro);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  resize: vertical;
+}
+
+.formulario__campo input::placeholder,
+.formulario__campo textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.formulario__campo input:focus,
+.formulario__campo select:focus,
+.formulario__campo textarea:focus {
+  border-color: var(--plata);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.formulario__campo select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b7b7b7' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.formulario__campo select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.boton--claro:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
 /* ---------- CTA / contacto ---------- */
 
 .seccion-cta {
@@ -1319,6 +1402,46 @@ a {
 
 .cta-caja__llamar:hover {
   opacity: 1;
+}
+
+/* ---------- botón flotante: contratar ---------- */
+
+.flotante-contratar {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--negro);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.flotante-contratar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+}
+
+.flotante-contratar svg {
+  color: var(--plata);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .flotante-contratar {
+    right: 26px;
+    bottom: 26px;
+  }
 }
 
 /* ---------- footer ---------- */
