@@ -48,6 +48,7 @@ const SERVICIOS = [
     texto:
       'Menús completos para el día más importante: entradas, plato fuerte, postre y mesa de dulces, con montaje acorde a la decoración de su boda.',
     cta: 'Cotizar boda',
+    imagen: '/servicios/bodas.jpg',
   },
   {
     num: '02',
@@ -55,6 +56,7 @@ const SERVICIOS = [
     texto:
       'Coffee breaks, almuerzos empresariales y cócteles de cierre para reuniones, capacitaciones y lanzamientos.',
     cta: 'Cotizar evento corporativo',
+    imagen: '/servicios/corporativos.jpg',
   },
   {
     num: '03',
@@ -62,6 +64,7 @@ const SERVICIOS = [
     texto:
       'Celebraciones a la medida, con opciones de buffet o servicio a la mesa según el estilo de la fiesta.',
     cta: 'Cotizar celebración',
+    imagen: '/servicios/quinceaneras.jpg',
   },
   {
     num: '04',
@@ -69,6 +72,7 @@ const SERVICIOS = [
     texto:
       'Pasapalos y estaciones interactivas ideales para recepciones, inauguraciones y encuentros sociales.',
     cta: 'Cotizar cóctel',
+    imagen: '/servicios/cocteles.jpg',
   },
 ]
 
@@ -199,68 +203,27 @@ function LogoAlba({ tamano = 64 }) {
 }
 
 /* =================================================================
-   CINTA DECORATIVA — Costa Rica
+   CINTA DECORATIVA — Costa Rica (con logo y animación de ondeo)
    ================================================================= */
 
 function CostaRicaRibbon() {
-  return (
-    <>
-      {/* Cinta esquina superior izquierda */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '90px',
-          height: '90px',
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          zIndex: 20,
-        }}
-      >
-        <svg
-          viewBox="0 0 90 90"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: '100%', height: '100%' }}
-        >
-          <g transform="rotate(-45 0 0) translate(-20,-10)">
-            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
-            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
-            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
-          </g>
-        </svg>
-      </div>
+  const franjas = ['azul', 'blanca', 'roja', 'blanca', 'azul']
 
-      {/* Cinta esquina superior derecha */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '90px',
-          height: '90px',
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          zIndex: 20,
-        }}
-      >
-        <svg
-          viewBox="0 0 90 90"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: '100%', height: '100%' }}
-        >
-          <g transform="rotate(45 90 0) translate(-50,-10)">
-            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
-            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
-            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
-          </g>
-        </svg>
+  return (
+    <div className="cr-ribbon-corner">
+      <div className="cr-ribbon">
+        {franjas.map((color, i) => (
+          <span
+            key={i}
+            className={`cr-ribbon__franja cr-ribbon__franja--${color}`}
+            style={{ animationDelay: `${i * 0.12}s` }}
+          />
+        ))}
+        <span className="cr-ribbon__logo">
+          <img src="/logo-alba.png" alt="Catering Alba" />
+        </span>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -561,6 +524,11 @@ function Servicios() {
           {SERVICIOS.map((s, i) => (
             <Reveal key={s.num} delay={i * 100}>
               <div className="tarjeta-pilar tarjeta-pilar--servicio tarjeta-pilar--oscura" data-num={s.num}>
+                {s.imagen && (
+                  <div className="tarjeta-pilar__foto">
+                    <img src={s.imagen} alt={s.titulo} />
+                  </div>
+                )}
                 <div className="tarjeta-pilar__cabecera">
                   <span className="tarjeta-pilar__num">{s.num}</span>
                 </div>
