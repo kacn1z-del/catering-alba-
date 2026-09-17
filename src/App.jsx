@@ -72,7 +72,7 @@ const SERVICIOS = [
   },
 ]
 
-const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Guarniciones', 'Postres', 'Bebidas']
+const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Postres', 'Bebidas']
 
 const CARRUSEL = [
   { img: '/galeria/evento-05.jpeg', etiqueta: 'Bodas', titulo: 'Montajes de boda' },
@@ -97,11 +97,7 @@ const MENU = [
   { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto.', imagen: '/menu/lomito-vino.jpg' },
   { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.', imagen: '/menu/pollo-relleno.jpg' },
 
-  // Guarniciones (el paquete incluye 3 guarniciones + 1 carne)
-  { nombre: 'Arroces', categoria: 'Guarniciones', desc: 'Blanco, con maíz dulce, con culantro, jardinero o con almendras.' },
-  { nombre: 'Puré y raíces', categoria: 'Guarniciones', desc: 'Puré de papa, arracache o papitas redondas a la mantequilla.' },
-  { nombre: 'Vegetales', categoria: 'Guarniciones', desc: 'Verduras salteadas a la mantequilla o escabeche en salsa de tomate.' },
-  { nombre: 'Ensaladas', categoria: 'Guarniciones', desc: 'Verde, mixta, verde con frutas, rusa o fría de caracolitos.' },
+  // Guarniciones: ver lista completa desplegable junto al Plato fuerte
 
   // Postres
   { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
@@ -117,6 +113,24 @@ const MENU = [
   { nombre: 'Brindis de bienvenida', categoria: 'Bebidas', desc: 'Copa de vino espumoso sin alcohol para recibir a sus invitados.' },
   { nombre: 'Estación de café y tés', categoria: 'Bebidas', desc: 'Café, variedad de tés y aguadulce, con leche, crema y azúcar.' },
   { nombre: 'Refrescos de mesa', categoria: 'Bebidas', desc: 'Refresco gaseoso variado y té, servido directamente en cada mesa.' },
+]
+
+const GUARNICIONES = [
+  'Arroz blanco',
+  'Arroz con maíz dulce',
+  'Arroz con culantro',
+  'Arroz jardinero',
+  'Arroz con almendras',
+  'Puré de papa',
+  'Arracache',
+  'Verduras salteadas a la mantequilla',
+  'Papitas redondas a la mantequilla',
+  'Escabeche en salsa de tomate',
+  'Ensalada verde',
+  'Ensalada mixta',
+  'Ensalada verde con frutas',
+  'Ensalada rusa',
+  'Ensalada fría de caracolitos',
 ]
 
 const BENEFICIOS = [
@@ -370,6 +384,100 @@ function IconFlecha({ direccion = 'izq' }) {
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
       {direccion === 'izq' ? <path d="M15 5 8 12l7 7" /> : <path d="M9 5l7 7-7 7" />}
     </svg>
+  )
+}
+
+function IconChevron() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  )
+}
+
+/* =================================================================
+   DESPLEGABLE — para listas largas (ej. guarniciones)
+   ================================================================= */
+
+function Desplegable({ titulo, subtitulo, items }) {
+  const [abierto, setAbierto] = useState(false)
+
+  return (
+    <div
+      style={{
+        marginTop: '28px',
+        border: '1px solid rgba(0,0,0,0.12)',
+        borderRadius: '14px',
+        overflow: 'hidden',
+        background: '#fff',
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setAbierto((v) => !v)}
+        aria-expanded={abierto}
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '16px',
+          padding: '18px 22px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          textAlign: 'left',
+        }}
+      >
+        <span>
+          <span style={{ display: 'block', fontSize: '1.05rem', fontWeight: 600 }}>{titulo}</span>
+          {subtitulo && (
+            <span style={{ display: 'block', fontSize: '0.85rem', opacity: 0.65, marginTop: '2px' }}>
+              {subtitulo}
+            </span>
+          )}
+        </span>
+        <span
+          style={{
+            display: 'inline-flex',
+            transition: 'transform 0.25s ease',
+            transform: abierto ? 'rotate(180deg)' : 'rotate(0deg)',
+            flexShrink: 0,
+          }}
+        >
+          <IconChevron />
+        </span>
+      </button>
+
+      {abierto && (
+        <ul
+          style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: '0 22px 20px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '8px 20px',
+          }}
+        >
+          {items.map((it) => (
+            <li
+              key={it}
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: '8px',
+                fontSize: '0.92rem',
+                opacity: 0.85,
+              }}
+            >
+              <span style={{ opacity: 0.5 }}>—</span>
+              {it}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }
 
@@ -794,6 +902,16 @@ function Menu() {
             </Reveal>
           ))}
         </div>
+
+        {(filtro === 'Todos' || filtro === 'Platos fuertes') && (
+          <Reveal>
+            <Desplegable
+              titulo="Guarniciones incluidas"
+              subtitulo="El plato fuerte incluye 3 guarniciones a elegir de esta lista"
+              items={GUARNICIONES}
+            />
+          </Reveal>
+        )}
       </div>
     </section>
   )
