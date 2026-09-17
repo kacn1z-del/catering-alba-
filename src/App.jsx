@@ -48,7 +48,6 @@ const SERVICIOS = [
     texto:
       'Menús completos para el día más importante: entradas, plato fuerte, postre y mesa de dulces, con montaje acorde a la decoración de su boda.',
     cta: 'Cotizar boda',
-    imagen: '/servicios/bodas.jpg',
   },
   {
     num: '02',
@@ -56,7 +55,6 @@ const SERVICIOS = [
     texto:
       'Coffee breaks, almuerzos empresariales y cócteles de cierre para reuniones, capacitaciones y lanzamientos.',
     cta: 'Cotizar evento corporativo',
-    imagen: '/servicios/corporativos.jpg',
   },
   {
     num: '03',
@@ -64,7 +62,6 @@ const SERVICIOS = [
     texto:
       'Celebraciones a la medida, con opciones de buffet o servicio a la mesa según el estilo de la fiesta.',
     cta: 'Cotizar celebración',
-    imagen: '/servicios/quinceaneras.jpg',
   },
   {
     num: '04',
@@ -72,11 +69,10 @@ const SERVICIOS = [
     texto:
       'Pasapalos y estaciones interactivas ideales para recepciones, inauguraciones y encuentros sociales.',
     cta: 'Cotizar cóctel',
-    imagen: '/servicios/cocteles.jpg',
   },
 ]
 
-const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Postres', 'Bebidas']
+const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Guarniciones', 'Postres', 'Bebidas']
 
 const CARRUSEL = [
   { img: '/galeria/evento-05.jpeg', etiqueta: 'Bodas', titulo: 'Montajes de boda' },
@@ -87,14 +83,40 @@ const CARRUSEL = [
 ]
 
 const MENU = [
-  { nombre: 'Carpaccio de res', categoria: 'Entradas', desc: 'Finas láminas de res, alcaparras, parmesano y aceite de oliva.', imagen: '/menu/carpaccio-res.jpg' },
-  { nombre: 'Tartaleta de camarón', categoria: 'Entradas', desc: 'Base crocante, camarón salteado y salsa cítrica.', imagen: '/menu/tartaleta-camaron.jpg' },
-  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto y puré de papa trufado.', imagen: '/menu/lomito-vino.jpg' },
+  // Entradas
+  { nombre: 'Dip de atún', categoria: 'Entradas', desc: 'Atún con mayonesa, acompañado con tortillitas tipo chips.' },
+  { nombre: 'Dip de frijoles molidos', categoria: 'Entradas', desc: 'Frijoles molidos acompañados con tortillitas tipo chips.' },
+  { nombre: 'Dip dulce de frutas y queso crema', categoria: 'Entradas', desc: 'Acompañado con galletas tipo boquitas.' },
+  { nombre: 'Dip sensación de piña', categoria: 'Entradas', desc: 'Acompañado con galletas tipo boquitas.' },
+  { nombre: 'Sopa Azteca', categoria: 'Entradas', desc: 'Acompañada con aguacate, queso y tortillas tostadas.' },
+  { nombre: 'Garbanzos con pollo o cerdo', categoria: 'Entradas', desc: 'Entrada tradicional, a elegir con pollo o cerdo.' },
+  { nombre: 'Frijoles blancos con pollo o cerdo', categoria: 'Entradas', desc: 'Entrada tradicional, a elegir con pollo o cerdo.' },
+  { nombre: 'Crema de ayote, brócoli o papa', categoria: 'Entradas', desc: 'Cremas suaves a elegir como entrada.' },
+
+  // Platos fuertes
+  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto.', imagen: '/menu/lomito-vino.jpg' },
   { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.', imagen: '/menu/pollo-relleno.jpg' },
-  { nombre: 'Risotto de camarones', categoria: 'Platos fuertes', desc: 'Arroz cremoso, camarones frescos y toque de limón.', imagen: '/menu/risotto-camarones.jpg' },
-  { nombre: 'Mousse de maracuyá', categoria: 'Postres', desc: 'Textura ligera y aireada con reducción de frutos de la pasión.', imagen: '/menu/mousse-maracuya.jpg' },
-  { nombre: 'Mesa de postres finos', categoria: 'Postres', desc: 'Selección de mini postres: tartaletas, macarons y brownies.', imagen: '/menu/mesa-postres.jpg' },
-  { nombre: 'Barra de cócteles sin alcohol', categoria: 'Bebidas', desc: 'Mocktails de temporada preparados al momento.', imagen: '/menu/barra-cocteles.jpg' },
+
+  // Guarniciones (el paquete incluye 3 guarniciones + 1 carne)
+  { nombre: 'Arroces', categoria: 'Guarniciones', desc: 'Blanco, con maíz dulce, con culantro, jardinero o con almendras.' },
+  { nombre: 'Puré y raíces', categoria: 'Guarniciones', desc: 'Puré de papa, arracache o papitas redondas a la mantequilla.' },
+  { nombre: 'Vegetales', categoria: 'Guarniciones', desc: 'Verduras salteadas a la mantequilla o escabeche en salsa de tomate.' },
+  { nombre: 'Ensaladas', categoria: 'Guarniciones', desc: 'Verde, mixta, verde con frutas, rusa o fría de caracolitos.' },
+
+  // Postres
+  { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
+  { nombre: 'Tentación de mora', categoria: 'Postres', desc: 'Postre cremoso con mora de temporada.' },
+  { nombre: 'Postre de frutas', categoria: 'Postres', desc: 'Selección de frutas frescas de temporada.' },
+  { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: 'Textura ligera y aireada, según la fruta disponible.' },
+  { nombre: 'Postre de marmelos', categoria: 'Postres', desc: 'Postre tradicional a base de marmelo.' },
+  { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: 'Coloridas capas de gelatina en textura mosaico.' },
+  { nombre: 'Cheesecake de oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
+  { nombre: 'Delicia de piña', categoria: 'Postres', desc: 'Postre fresco a base de piña.' },
+
+  // Bebidas
+  { nombre: 'Brindis de bienvenida', categoria: 'Bebidas', desc: 'Copa de vino espumoso sin alcohol para recibir a sus invitados.' },
+  { nombre: 'Estación de café y tés', categoria: 'Bebidas', desc: 'Café, variedad de tés y aguadulce, con leche, crema y azúcar.' },
+  { nombre: 'Refrescos de mesa', categoria: 'Bebidas', desc: 'Refresco gaseoso variado y té, servido directamente en cada mesa.' },
 ]
 
 const BENEFICIOS = [
@@ -203,27 +225,68 @@ function LogoAlba({ tamano = 64 }) {
 }
 
 /* =================================================================
-   CINTA DECORATIVA — Costa Rica (con logo y animación de ondeo)
+   CINTA DECORATIVA — Costa Rica
    ================================================================= */
 
 function CostaRicaRibbon() {
-  const franjas = ['azul', 'blanca', 'roja', 'blanca', 'azul']
-
   return (
-    <div className="cr-ribbon-corner">
-      <div className="cr-ribbon">
-        {franjas.map((color, i) => (
-          <span
-            key={i}
-            className={`cr-ribbon__franja cr-ribbon__franja--${color}`}
-            style={{ animationDelay: `${i * 0.12}s` }}
-          />
-        ))}
-        <span className="cr-ribbon__logo">
-          <img src="/logo-alba.png" alt="Catering Alba" />
-        </span>
+    <>
+      {/* Cinta esquina superior izquierda */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '90px',
+          height: '90px',
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: 20,
+        }}
+      >
+        <svg
+          viewBox="0 0 90 90"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: '100%', height: '100%' }}
+        >
+          <g transform="rotate(-45 0 0) translate(-20,-10)">
+            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
+            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
+            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
+            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
+            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
+          </g>
+        </svg>
       </div>
-    </div>
+
+      {/* Cinta esquina superior derecha */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: '90px',
+          height: '90px',
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: 20,
+        }}
+      >
+        <svg
+          viewBox="0 0 90 90"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: '100%', height: '100%' }}
+        >
+          <g transform="rotate(45 90 0) translate(-50,-10)">
+            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
+            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
+            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
+            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
+            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
+          </g>
+        </svg>
+      </div>
+    </>
   )
 }
 
@@ -524,11 +587,6 @@ function Servicios() {
           {SERVICIOS.map((s, i) => (
             <Reveal key={s.num} delay={i * 100}>
               <div className="tarjeta-pilar tarjeta-pilar--servicio tarjeta-pilar--oscura" data-num={s.num}>
-                {s.imagen && (
-                  <div className="tarjeta-pilar__foto">
-                    <img src={s.imagen} alt={s.titulo} />
-                  </div>
-                )}
                 <div className="tarjeta-pilar__cabecera">
                   <span className="tarjeta-pilar__num">{s.num}</span>
                 </div>
