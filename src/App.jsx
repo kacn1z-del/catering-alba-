@@ -754,6 +754,46 @@ function EligeTuServicio() {
         </Reveal>
 
         <Reveal>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '18px',
+              background: '#111',
+              color: '#fff',
+              borderRadius: '16px',
+              padding: '26px 28px',
+              marginBottom: '32px',
+            }}
+          >
+            <div>
+              <span style={{ display: 'block', fontSize: '0.78rem', letterSpacing: '0.08em', opacity: 0.7, textTransform: 'uppercase' }}>
+                — La opción completa
+              </span>
+              <h3 style={{ margin: '6px 0 4px', fontSize: '1.3rem' }}>Evento completo</h3>
+              <p style={{ margin: 0, opacity: 0.8, fontSize: '0.92rem', maxWidth: '440px' }}>
+                Comida, decoración, equipo y servicio de meseros, todo incluido en un solo paquete.
+              </p>
+            </div>
+            <Boton
+              as="a"
+              className="boton--claro"
+              href={`https://wa.me/${CONTACTO.telefonoWa}?text=${encodeURIComponent(
+                'Hola, quisiera cotizar el evento completo (comida, decoración, equipo y meseros).'
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <IconWhatsApp /> Cotizar evento completo
+            </Boton>
+          </div>
+
+          <p className="nota-seccion" style={{ marginBottom: '16px' }}>
+            ¿Prefiere armar su propio servicio? Marque lo que necesita por aparte:
+          </p>
+
           <div className="selector-servicios">
             {OPCIONES_SERVICIO.map((op) => {
               const activo = seleccion.includes(op)
