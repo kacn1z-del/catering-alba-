@@ -102,6 +102,7 @@ const MENU = [
   { nombre: 'Dip de atún', categoria: 'Dip de bienvenida', desc: 'Dip de atún con mayonesa, acompañado de tortillas tipo chips.' },
   { nombre: 'Dip de frijoles molidos', categoria: 'Dip de bienvenida', desc: 'Acompañado de tortillas tipo chips.' },
   { nombre: 'Dulce de frutas con queso crema', categoria: 'Dip de bienvenida', desc: 'Acompañado de galletas saladas.' },
+  { nombre: 'Entrada capresse', categoria: 'Entradas', desc: 'Pan tostado con tomate, queso y albahaca fresca.', imagen: '/menu/entrada-capresse.jpg' },
   { nombre: 'Sensación de piña', categoria: 'Dip de bienvenida', desc: 'Acompañada de galletas saladas.' },
 
   // Entradas (bocadillos, sopas y cremas)
@@ -118,7 +119,7 @@ const MENU = [
   { nombre: 'Pollo a la plancha en salsa blanca', categoria: 'Carnes', desc: '' },
   { nombre: 'Pollo a la plancha en salsa pomodoro', categoria: 'Carnes', desc: '' },
   { nombre: 'Cordon bleu', categoria: 'Carnes', desc: '', extra: true },
-  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce', categoria: 'Carnes', desc: '' },
+  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce', categoria: 'Carnes', desc: '', imagen: '/menu/lomo-cerdo-bbq.jpg' },
   { nombre: 'Lomo de cerdo relleno', categoria: 'Carnes', desc: '', extra: true },
   { nombre: 'Lomo de res relleno', categoria: 'Carnes', desc: '', extra: true },
 
@@ -130,7 +131,7 @@ const MENU = [
   { nombre: 'Arroz con almendras', categoria: 'Guarniciones', desc: '' },
   { nombre: 'Puré de papa', categoria: 'Guarniciones', desc: '' },
   { nombre: 'Arracache', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Verduras salteadas en mantequilla', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Verduras salteadas en mantequilla', categoria: 'Guarniciones', desc: '', imagen: '/menu/verduras-salteadas.jpg' },
   { nombre: 'Papas pequeñas a la mantequilla', categoria: 'Guarniciones', desc: '' },
   { nombre: 'Escabeche en salsa de tomate', categoria: 'Guarniciones', desc: '' },
 
@@ -145,7 +146,7 @@ const MENU = [
   { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
   { nombre: 'Tentación de mora', categoria: 'Postres', desc: 'Postre cremoso con mora de temporada.' },
   { nombre: 'Postre de frutas', categoria: 'Postres', desc: 'Selección de frutas frescas de temporada.' },
-  { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: 'Textura ligera y aireada, según la fruta disponible.' },
+  { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: 'Textura ligera y aireada, según la fruta disponible.', imagen: '/menu/mousse-temporada.jpg' },
   { nombre: 'Postre de malvaviscos', categoria: 'Postres', desc: 'Postre tradicional a base de malvaviscos.' },
   { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: 'Coloridas capas de gelatina en textura mosaico.' },
   { nombre: 'Cheesecake de Oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
