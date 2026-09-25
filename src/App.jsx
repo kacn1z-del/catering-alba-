@@ -543,9 +543,26 @@ function Header({ activo, irA }) {
 
 function Hero({ irA }) {
   return (
-    <section id="inicio" className="hero">
-      <div className="hero__textura" />
-      <div className="envoltura hero__contenido">
+    <section
+      id="inicio"
+      className="hero"
+      style={{
+        backgroundImage: "url('/hero-fondo.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        position: 'relative',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          zIndex: 0,
+        }}
+      />
+      <div className="hero__textura" style={{ zIndex: 1, position: 'relative' }} />
+      <div className="envoltura hero__contenido" style={{ position: 'relative', zIndex: 2 }}>
         <Reveal>
           <span className="ojo-etiqueta ojo-etiqueta--claro">— Catering para eventos</span>
         </Reveal>
