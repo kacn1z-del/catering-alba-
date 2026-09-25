@@ -273,30 +273,6 @@ function LogoAlba({ tamano = 64 }) {
 }
 
 /* =================================================================
-   CINTA DECORATIVA — Costa Rica
-   ================================================================= */
-
-function CostaRicaRibbon() {
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-      aria-hidden="true"
-    >
-      <div style={{ flex: '2 0 0', background: '#002B7F' }} />
-      <div style={{ flex: '1 0 0', background: '#FFFFFF' }} />
-      <div style={{ flex: '3 0 0', background: '#CE1126' }} />
-      <div style={{ flex: '1 0 0', background: '#FFFFFF' }} />
-      <div style={{ flex: '2 0 0', background: '#002B7F' }} />
-    </div>
-  )
-}
-
-/* =================================================================
    ICONOS (línea fina, minimalistas)
    ================================================================= */
 
@@ -1405,7 +1381,6 @@ export default function App() {
 
   return (
     <div className="pagina">
-      <CostaRicaRibbon />
       <Header activo={activo} irA={irA} />
       <Hero irA={irA} />
       <Nosotros />
