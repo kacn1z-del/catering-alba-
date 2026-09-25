@@ -84,7 +84,7 @@ const SERVICIOS = [
 
 const HERO_FONDOS = ['/hero-fondo.jpg']
 
-const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Postres', 'Bebidas']
+const CATEGORIAS = ['Todos', 'Brindis', 'Dip de bienvenida', 'Entradas', 'Carnes', 'Guarniciones', 'Ensaladas', 'Postres']
 
 const CARRUSEL = [
   { img: '/galeria/evento-05.jpeg', etiqueta: 'Bodas', titulo: 'Montajes de boda' },
@@ -96,24 +96,50 @@ const CARRUSEL = [
 
 const MENU = [
   // Brindis
-  { nombre: 'Brindis de bienvenida', categoria: 'Bebidas', desc: 'Vino espumoso sin alcohol.' },
+  { nombre: 'Brindis de bienvenida', categoria: 'Brindis', desc: 'Vino espumoso sin alcohol.' },
 
   // Dip de bienvenida
-  { nombre: 'Dip de atún', categoria: 'Entradas', desc: 'Dip de atún con mayonesa, acompañado de tortillas tipo chips.' },
-  { nombre: 'Dip de frijoles molidos', categoria: 'Entradas', desc: 'Acompañado de tortillas tipo chips.' },
-  { nombre: 'Dulce de frutas con queso crema', categoria: 'Entradas', desc: 'Acompañado de galletas saladas.' },
-  { nombre: 'Sensación de piña', categoria: 'Entradas', desc: 'Acompañada de galletas saladas.' },
+  { nombre: 'Dip de atún', categoria: 'Dip de bienvenida', desc: 'Dip de atún con mayonesa, acompañado de tortillas tipo chips.' },
+  { nombre: 'Dip de frijoles molidos', categoria: 'Dip de bienvenida', desc: 'Acompañado de tortillas tipo chips.' },
+  { nombre: 'Dulce de frutas con queso crema', categoria: 'Dip de bienvenida', desc: 'Acompañado de galletas saladas.' },
+  { nombre: 'Sensación de piña', categoria: 'Dip de bienvenida', desc: 'Acompañada de galletas saladas.' },
 
-  // Bocadillos para el café
+  // Entradas (bocadillos, sopas y cremas)
   { nombre: 'Bocadillos para el café', categoria: 'Entradas', desc: 'Repostería dulce y repostería salada.' },
-
-  // Entradas (sopas y cremas)
   { nombre: 'Sopa azteca', categoria: 'Entradas', desc: 'Con aguacate, queso y tortillas tostadas.' },
   { nombre: 'Sopa de garbanzos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
   { nombre: 'Sopa de frijoles blancos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
   { nombre: 'Crema de ayote, brócoli o papa', categoria: 'Entradas', desc: 'Cremas suaves a elegir como entrada.' },
 
-  // Plato fuerte: la carne y las guarniciones se muestran como desplegables
+  // Carnes (el plato fuerte incluye 1 carne a elección)
+  { nombre: 'Carne en salsa', categoria: 'Carnes', desc: '' },
+  { nombre: 'Mano de piedra en salsa de hongos', categoria: 'Carnes', desc: '', extra: true },
+  { nombre: 'Pollo a la reina', categoria: 'Carnes', desc: '' },
+  { nombre: 'Pollo a la plancha en salsa blanca', categoria: 'Carnes', desc: '' },
+  { nombre: 'Pollo a la plancha en salsa pomodoro', categoria: 'Carnes', desc: '' },
+  { nombre: 'Cordon bleu', categoria: 'Carnes', desc: '', extra: true },
+  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce', categoria: 'Carnes', desc: '' },
+  { nombre: 'Lomo de cerdo relleno', categoria: 'Carnes', desc: '', extra: true },
+  { nombre: 'Lomo de res relleno', categoria: 'Carnes', desc: '', extra: true },
+
+  // Guarniciones (arroces y acompañamientos — el plato fuerte incluye 3 a elección)
+  { nombre: 'Arroz blanco', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con maíz dulce', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con culantro', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz jardinero', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arroz con almendras', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Puré de papa', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Arracache', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Verduras salteadas en mantequilla', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Papas pequeñas a la mantequilla', categoria: 'Guarniciones', desc: '' },
+  { nombre: 'Escabeche en salsa de tomate', categoria: 'Guarniciones', desc: '' },
+
+  // Ensaladas
+  { nombre: 'Ensalada verde', categoria: 'Ensaladas', desc: '' },
+  { nombre: 'Ensalada mixta', categoria: 'Ensaladas', desc: '' },
+  { nombre: 'Ensalada verde con frutas', categoria: 'Ensaladas', desc: '', extra: true },
+  { nombre: 'Ensalada rusa', categoria: 'Ensaladas', desc: '' },
+  { nombre: 'Ensalada fría de caracolitos', categoria: 'Ensaladas', desc: '' },
 
   // Postres
   { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
@@ -124,46 +150,6 @@ const MENU = [
   { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: 'Coloridas capas de gelatina en textura mosaico.' },
   { nombre: 'Cheesecake de Oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
   { nombre: 'Delicia de piña', categoria: 'Postres', desc: 'Postre fresco a base de piña.' },
-]
-
-const CARNES = [
-  { nombre: 'Carne en salsa' },
-  { nombre: 'Mano de piedra en salsa de hongos', extra: true },
-  { nombre: 'Pollo a la reina' },
-  { nombre: 'Pollo a la plancha en salsa blanca' },
-  { nombre: 'Pollo a la plancha en salsa pomodoro' },
-  { nombre: 'Cordon bleu', extra: true },
-  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce' },
-  { nombre: 'Lomo de cerdo relleno', extra: true },
-  { nombre: 'Lomo de res relleno', extra: true },
-]
-
-const GUARNICIONES_GRUPOS = [
-  {
-    titulo: 'Arroces y acompañamientos',
-    items: [
-      'Arroz blanco',
-      'Arroz con maíz dulce',
-      'Arroz con culantro',
-      'Arroz jardinero',
-      'Arroz con almendras',
-      'Puré de papa',
-      'Arracache',
-      'Verduras salteadas en mantequilla',
-      'Papas pequeñas a la mantequilla',
-      'Escabeche en salsa de tomate',
-    ],
-  },
-  {
-    titulo: 'Ensaladas',
-    items: [
-      'Ensalada verde',
-      'Ensalada mixta',
-      'Ensalada verde con frutas *',
-      'Ensalada rusa',
-      'Ensalada fría de caracolitos',
-    ],
-  },
 ]
 
 const EVENTO_COMPLETO_INCLUYE = [
@@ -960,6 +946,8 @@ function Carrusel() {
 function Menu() {
   const [filtro, setFiltro] = useState('Todos')
   const items = filtro === 'Todos' ? MENU : MENU.filter((m) => m.categoria === filtro)
+  const mostrarNotaPlatoFuerte = filtro === 'Carnes' || filtro === 'Guarniciones' || filtro === 'Ensaladas'
+  const hayExtraEnVista = items.some((m) => m.extra)
 
   return (
     <section id="menu" className="seccion seccion--clara">
@@ -992,6 +980,12 @@ function Menu() {
           </div>
         </div>
 
+        {mostrarNotaPlatoFuerte && (
+          <p className="nota-seccion" style={{ marginTop: '-8px' }}>
+            El plato fuerte incluye 1 carne y 3 guarniciones (arroz/acompañamiento + ensalada) a elección.
+          </p>
+        )}
+
         <div className="rejilla-puestos">
           {items.map((m, i) => (
             <Reveal key={m.nombre} delay={(i % 4) * 80}>
@@ -1002,31 +996,20 @@ function Menu() {
                   </div>
                 )}
                 <span className="tarjeta-puesto__categoria">{m.categoria}</span>
-                <h3 className="tarjeta-puesto__nombre">{m.nombre}</h3>
-                <p className="tarjeta-puesto__desc">{m.desc}</p>
+                <h3 className="tarjeta-puesto__nombre">
+                  {m.nombre}
+                  {m.extra && <span style={{ opacity: 0.5 }}> *</span>}
+                </h3>
+                {m.desc && <p className="tarjeta-puesto__desc">{m.desc}</p>}
               </div>
             </Reveal>
           ))}
         </div>
 
-        {(filtro === 'Todos' || filtro === 'Platos fuertes') && (
-          <Reveal>
-            <p className="nota-seccion" style={{ marginBottom: 0 }}>
-              El plato fuerte incluye una carne y tres guarniciones a elección:
-            </p>
-            <Desplegable
-              titulo="Carnes a elegir"
-              subtitulo="Seleccione 1 para el plato fuerte"
-              items={CARNES}
-              nota="* Estas opciones tienen un costo adicional."
-            />
-            <Desplegable
-              titulo="Guarniciones incluidas"
-              subtitulo="Seleccione 3 para el plato fuerte"
-              grupos={GUARNICIONES_GRUPOS}
-              nota="* Esta opción tiene un costo adicional."
-            />
-          </Reveal>
+        {hayExtraEnVista && (
+          <p className="nota-seccion" style={{ marginTop: '12px', fontSize: '0.8rem', opacity: 0.6 }}>
+            * Estas opciones tienen un costo adicional.
+          </p>
         )}
       </div>
     </section>
