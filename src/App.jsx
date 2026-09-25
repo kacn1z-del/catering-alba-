@@ -19,18 +19,21 @@ const NAV = [
   { id: 'contacto', label: 'Contacto' },
 ]
 
+const NOSOTROS_INTRO =
+  'En Catering Service Alba somos mucho más que un servicio de alimentación: diseñamos experiencias completas para bodas, eventos corporativos, cumpleaños, baby showers y todo tipo de celebraciones especiales con más de 15 años de experiencia. Nos encargamos de la alimentación, decoración, mantelería, montaje, desmontaje y atención durante el evento. Brindamos nuestro servicio en todo Costa Rica, llevando calidad, elegancia y atención personalizada hasta el lugar de su evento.'
+
 const PILARES = [
   {
     num: '01',
     titulo: 'Nuestra filosofía',
     texto:
-      'En Catering Alba creemos que cada evento merece una mesa impecable. Cuidamos cada detalle, desde la selección de ingredientes hasta el montaje final, para que usted solo se preocupe por disfrutar.',
+      'Creemos que cada celebración debe reflejar la esencia de quienes la viven. Por eso, unimos sabores, decoración y atención personalizada para crear ambientes especiales, donde cada elemento tenga un propósito y cada detalle cuente una historia.',
   },
   {
     num: '02',
     titulo: 'Nuestro compromiso',
     texto:
-      'Trabajamos con recetas propias, presentación cuidada y un servicio puntual y discreto, adaptando cada menú al estilo, presupuesto y necesidades de quien nos contrata.',
+      'Nos comprometemos a ofrecer un servicio integral e impecable, cuidando cada detalle desde la planificación hasta la finalización del evento. Nuestro propósito es brindarle tranquilidad, calidad y confianza para que disfrute plenamente de su celebración, mientras nuestro equipo se encarga de hacer realidad todo lo que imaginó.',
   },
 ]
 
@@ -46,31 +49,40 @@ const SERVICIOS = [
     num: '01',
     titulo: 'Bodas',
     texto:
-      'Menús completos para el día más importante: entradas, plato fuerte, postre y mesa de dulces, con montaje acorde a la decoración de su boda.',
-    cta: 'Cotizar boda',
+      'Creamos bodas únicas y memorables, cuidando la alimentación, decoración, montaje y cada detalle de ese día tan especial.',
+    cta: 'Cotizar mi boda',
   },
   {
     num: '02',
     titulo: 'Eventos corporativos',
     texto:
-      'Coffee breaks, almuerzos empresariales y cócteles de cierre para reuniones, capacitaciones y lanzamientos.',
+      'Diseñamos experiencias profesionales para reuniones, capacitaciones, inauguraciones, cenas empresariales y celebraciones corporativas.',
     cta: 'Cotizar evento corporativo',
   },
   {
     num: '03',
-    titulo: 'Cumpleaños y quinceañeras',
+    titulo: 'Cumpleaños',
     texto:
-      'Celebraciones a la medida, con opciones de buffet o servicio a la mesa según el estilo de la fiesta.',
-    cta: 'Cotizar celebración',
+      'Convertimos cada cumpleaños en una celebración especial con deliciosos menús, decoración y un servicio completamente personalizado.',
+    cta: 'Cotizar cumpleaños',
   },
   {
     num: '04',
-    titulo: 'Cócteles y recepciones',
+    titulo: 'Baby showers',
     texto:
-      'Pasapalos y estaciones interactivas ideales para recepciones, inauguraciones y encuentros sociales.',
-    cta: 'Cotizar cóctel',
+      'Creamos una celebración dulce y especial para recibir al nuevo integrante de la familia, con alimentación, decoración y detalles llenos de ternura.',
+    cta: 'Cotizar baby shower',
+  },
+  {
+    num: '05',
+    titulo: 'Celebraciones especiales',
+    texto:
+      'Aniversarios, graduaciones, primeras comuniones, bautizos y cualquier ocasión que merezca celebrarse de una manera inolvidable.',
+    cta: 'Cotizar mi celebración',
   },
 ]
+
+const HERO_FONDOS = ['/hero-fondo.jpg']
 
 const CATEGORIAS = ['Todos', 'Entradas', 'Platos fuertes', 'Postres', 'Bebidas']
 
@@ -83,72 +95,100 @@ const CARRUSEL = [
 ]
 
 const MENU = [
-  // Entradas
-  { nombre: 'Dip de atún', categoria: 'Entradas', desc: 'Atún con mayonesa, acompañado con tortillitas tipo chips.' },
-  { nombre: 'Dip de frijoles molidos', categoria: 'Entradas', desc: 'Frijoles molidos acompañados con tortillitas tipo chips.' },
-  { nombre: 'Dip dulce de frutas y queso crema', categoria: 'Entradas', desc: 'Acompañado con galletas tipo boquitas.' },
-  { nombre: 'Dip sensación de piña', categoria: 'Entradas', desc: 'Acompañado con galletas tipo boquitas.' },
-  { nombre: 'Sopa Azteca', categoria: 'Entradas', desc: 'Acompañada con aguacate, queso y tortillas tostadas.' },
-  { nombre: 'Garbanzos con pollo o cerdo', categoria: 'Entradas', desc: 'Entrada tradicional, a elegir con pollo o cerdo.' },
-  { nombre: 'Frijoles blancos con pollo o cerdo', categoria: 'Entradas', desc: 'Entrada tradicional, a elegir con pollo o cerdo.' },
+  // Brindis
+  { nombre: 'Brindis de bienvenida', categoria: 'Bebidas', desc: 'Vino espumoso sin alcohol.' },
+
+  // Dip de bienvenida
+  { nombre: 'Dip de atún', categoria: 'Entradas', desc: 'Dip de atún con mayonesa, acompañado de tortillas tipo chips.' },
+  { nombre: 'Dip de frijoles molidos', categoria: 'Entradas', desc: 'Acompañado de tortillas tipo chips.' },
+  { nombre: 'Dulce de frutas con queso crema', categoria: 'Entradas', desc: 'Acompañado de galletas saladas.' },
+  { nombre: 'Sensación de piña', categoria: 'Entradas', desc: 'Acompañada de galletas saladas.' },
+
+  // Bocadillos para el café
+  { nombre: 'Bocadillos para el café', categoria: 'Entradas', desc: 'Repostería dulce y repostería salada.' },
+
+  // Entradas (sopas y cremas)
+  { nombre: 'Sopa azteca', categoria: 'Entradas', desc: 'Con aguacate, queso y tortillas tostadas.' },
+  { nombre: 'Sopa de garbanzos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
+  { nombre: 'Sopa de frijoles blancos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
   { nombre: 'Crema de ayote, brócoli o papa', categoria: 'Entradas', desc: 'Cremas suaves a elegir como entrada.' },
 
-  // Platos fuertes
-  { nombre: 'Lomito en salsa de vino', categoria: 'Platos fuertes', desc: 'Lomito al punto, reducción de vino tinto.', imagen: '/menu/lomito-vino.jpg' },
-  { nombre: 'Pollo relleno gourmet', categoria: 'Platos fuertes', desc: 'Pechuga rellena de espinaca y queso, salsa de hongos silvestres.', imagen: '/menu/pollo-relleno.jpg' },
-
-  // Guarniciones: ver lista completa desplegable junto al Plato fuerte
+  // Plato fuerte: la carne y las guarniciones se muestran como desplegables
 
   // Postres
   { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
   { nombre: 'Tentación de mora', categoria: 'Postres', desc: 'Postre cremoso con mora de temporada.' },
   { nombre: 'Postre de frutas', categoria: 'Postres', desc: 'Selección de frutas frescas de temporada.' },
   { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: 'Textura ligera y aireada, según la fruta disponible.' },
-  { nombre: 'Postre de marmelos', categoria: 'Postres', desc: 'Postre tradicional a base de marmelo.' },
+  { nombre: 'Postre de malvaviscos', categoria: 'Postres', desc: 'Postre tradicional a base de malvaviscos.' },
   { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: 'Coloridas capas de gelatina en textura mosaico.' },
-  { nombre: 'Cheesecake de oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
+  { nombre: 'Cheesecake de Oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
   { nombre: 'Delicia de piña', categoria: 'Postres', desc: 'Postre fresco a base de piña.' },
-
-  // Bebidas
-  { nombre: 'Brindis de bienvenida', categoria: 'Bebidas', desc: 'Copa de vino espumoso sin alcohol para recibir a sus invitados.' },
-  { nombre: 'Estación de café y tés', categoria: 'Bebidas', desc: 'Café, variedad de tés y aguadulce, con leche, crema y azúcar.' },
-  { nombre: 'Refrescos de mesa', categoria: 'Bebidas', desc: 'Refresco gaseoso variado y té, servido directamente en cada mesa.' },
 ]
 
-const GUARNICIONES = [
-  'Arroz blanco',
-  'Arroz con maíz dulce',
-  'Arroz con culantro',
-  'Arroz jardinero',
-  'Arroz con almendras',
-  'Puré de papa',
-  'Arracache',
-  'Verduras salteadas a la mantequilla',
-  'Papitas redondas a la mantequilla',
-  'Escabeche en salsa de tomate',
-  'Ensalada verde',
-  'Ensalada mixta',
-  'Ensalada verde con frutas',
-  'Ensalada rusa',
-  'Ensalada fría de caracolitos',
+const CARNES = [
+  { nombre: 'Carne en salsa' },
+  { nombre: 'Mano de piedra en salsa de hongos', extra: true },
+  { nombre: 'Pollo a la reina' },
+  { nombre: 'Pollo a la plancha en salsa blanca' },
+  { nombre: 'Pollo a la plancha en salsa pomodoro' },
+  { nombre: 'Cordon bleu', extra: true },
+  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce' },
+  { nombre: 'Lomo de cerdo relleno', extra: true },
+  { nombre: 'Lomo de res relleno', extra: true },
 ]
 
-const BENEFICIOS = [
-  'Menú personalizado según su evento',
-  'Montaje y decoración de mesa incluidos',
-  'Servicio de meseros uniformados',
-  'Degustación previa disponible',
+const GUARNICIONES_GRUPOS = [
+  {
+    titulo: 'Arroces y acompañamientos',
+    items: [
+      'Arroz blanco',
+      'Arroz con maíz dulce',
+      'Arroz con culantro',
+      'Arroz jardinero',
+      'Arroz con almendras',
+      'Puré de papa',
+      'Arracache',
+      'Verduras salteadas en mantequilla',
+      'Papas pequeñas a la mantequilla',
+      'Escabeche en salsa de tomate',
+    ],
+  },
+  {
+    titulo: 'Ensaladas',
+    items: [
+      'Ensalada verde',
+      'Ensalada mixta',
+      'Ensalada verde con frutas *',
+      'Ensalada rusa',
+      'Ensalada fría de caracolitos',
+    ],
+  },
 ]
+
+const EVENTO_COMPLETO_INCLUYE = [
+  'Menú personalizado con brindis, dip de bienvenida, bocadillos coffee breaks, entrada, plato fuerte, postre y refrescos',
+  'Decoración del evento básica',
+  'Mantelería con manteles, cubresillas y telas',
+  'Vajilla, cubiertos y cristalería',
+  'Equipo para servir y conservar los alimentos',
+  'Montaje y desmontaje',
+  'Servicio de meseros',
+]
+
+const BENEFICIOS = EVENTO_COMPLETO_INCLUYE
 
 const OPCIONES_SERVICIO = [
-  'Solo comida',
-  'Comida a domicilio (se prepara y se entrega en la casa)',
-  'Solo alquiler de equipo',
-  'Solo decoraciones',
-  'Alquiler de vajilla',
+  'Servicio de alimentación',
+  'Alimentación a domicilio',
+  'Decoración de eventos',
+  'Arreglos florales',
+  'Alquiler de bases para centros de mesa',
+  'Alquiler de equipo',
   'Alquiler de mantelería',
+  'Alquiler de vajilla y cristalería',
   'Alquiler de percoladores',
-  'Alquiler de baño de maría',
+  'Alquiler de baños María',
 ]
 
 const GALERIA = [
@@ -365,7 +405,46 @@ function IconChevron() {
    DESPLEGABLE — para listas largas (ej. guarniciones)
    ================================================================= */
 
-function Desplegable({ titulo, subtitulo, items }) {
+function ListaDesplegable({ items }) {
+  return (
+    <ul
+      style={{
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: '8px 20px',
+      }}
+    >
+      {items.map((it) => {
+        const esObjeto = typeof it === 'object'
+        const label = esObjeto ? it.nombre : it
+        const extra = esObjeto && it.extra
+        return (
+          <li
+            key={label}
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: '8px',
+              fontSize: '0.92rem',
+              opacity: 0.85,
+            }}
+          >
+            <span style={{ opacity: 0.5 }}>—</span>
+            <span>
+              {label}
+              {extra && <span style={{ opacity: 0.55 }}> *</span>}
+            </span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+function Desplegable({ titulo, subtitulo, items, grupos, nota }) {
   const [abierto, setAbierto] = useState(false)
 
   return (
@@ -416,32 +495,23 @@ function Desplegable({ titulo, subtitulo, items }) {
       </button>
 
       {abierto && (
-        <ul
-          style={{
-            listStyle: 'none',
-            margin: 0,
-            padding: '0 22px 20px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '8px 20px',
-          }}
-        >
-          {items.map((it) => (
-            <li
-              key={it}
-              style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: '8px',
-                fontSize: '0.92rem',
-                opacity: 0.85,
-              }}
-            >
-              <span style={{ opacity: 0.5 }}>—</span>
-              {it}
-            </li>
-          ))}
-        </ul>
+        <div style={{ padding: '0 22px 20px' }}>
+          {grupos ? (
+            grupos.map((g, i) => (
+              <div key={g.titulo} style={{ marginTop: i === 0 ? 0 : '18px' }}>
+                <h4 style={{ margin: '0 0 8px', fontSize: '0.85rem', opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  {g.titulo}
+                </h4>
+                <ListaDesplegable items={g.items} />
+              </div>
+            ))
+          ) : (
+            <ListaDesplegable items={items} />
+          )}
+          {nota && (
+            <p style={{ margin: '16px 0 0', fontSize: '0.8rem', opacity: 0.55 }}>{nota}</p>
+          )}
+        </div>
       )}
     </div>
   )
@@ -547,7 +617,7 @@ function Hero({ irA }) {
       id="inicio"
       className="hero"
       style={{
-        backgroundImage: "url('/hero-fondo.jpg')",
+        backgroundImage: `url('${HERO_FONDOS[0]}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative',
@@ -564,7 +634,7 @@ function Hero({ irA }) {
       <div className="hero__textura" style={{ zIndex: 1, position: 'relative' }} />
       <div className="envoltura hero__contenido" style={{ position: 'relative', zIndex: 2 }}>
         <Reveal>
-          <span className="ojo-etiqueta ojo-etiqueta--claro">— Catering para eventos</span>
+          <span className="ojo-etiqueta ojo-etiqueta--claro">— Más que catering, creamos experiencias inolvidables</span>
         </Reveal>
         <Reveal delay={80}>
           <h1 className="hero__titulo">
@@ -573,8 +643,8 @@ function Hero({ irA }) {
         </Reveal>
         <Reveal delay={160}>
           <p className="hero__subtitulo">
-            Menús elegantes y servicio impecable para bodas, eventos corporativos, cumpleaños
-            y celebraciones especiales en todo Costa Rica.
+            Alimentación, decoración, y atención integral para bodas, eventos corporativos,
+            cumpleaños, baby showers y celebraciones especiales en todo Costa Rica.
           </p>
         </Reveal>
         <Reveal delay={240}>
@@ -614,14 +684,13 @@ function Nosotros() {
         <Reveal>
           <div className="cabecera-seccion">
             <div>
-              <span className="ojo-etiqueta">— Quiénes somos</span>
-              <h2 className="titulo-seccion">Catering con carácter propio</h2>
+              <span className="ojo-etiqueta">— ¿Quiénes somos?</span>
+              <h2 className="titulo-seccion">Más que catering, creamos experiencias inolvidables</h2>
             </div>
-            <p className="nota-seccion">
-              Un equipo dedicado a que su evento se vea, se sienta y sepa exactamente como usted
-              lo imaginó.
-            </p>
           </div>
+          <p className="nota-seccion" style={{ maxWidth: '760px', marginTop: '-8px', marginBottom: '32px' }}>
+            {NOSOTROS_INTRO}
+          </p>
         </Reveal>
 
         <div className="rejilla-pilares">
@@ -727,11 +796,12 @@ function EligeTuServicio() {
           <div className="cabecera-seccion">
             <div>
               <span className="ojo-etiqueta">— A la medida</span>
-              <h2 className="titulo-seccion">Elija su servicio</h2>
+              <h2 className="titulo-seccion">Servicios a su medida</h2>
             </div>
             <p className="nota-seccion">
-              También ofrecemos servicios por aparte: solo comida, solo alquiler de equipo,
-              o solo decoración. Marque lo que necesita y le cotizamos.
+              Cada evento tiene necesidades diferentes. Por eso, puede elegir únicamente los
+              servicios que necesita o combinarlos para crear una solución completamente
+              personalizada.
             </p>
           </div>
         </Reveal>
@@ -739,42 +809,55 @@ function EligeTuServicio() {
         <Reveal>
           <div
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '18px',
               background: '#111',
               color: '#fff',
               borderRadius: '16px',
-              padding: '26px 28px',
+              padding: '28px',
               marginBottom: '32px',
             }}
           >
-            <div>
-              <span style={{ display: 'block', fontSize: '0.78rem', letterSpacing: '0.08em', opacity: 0.7, textTransform: 'uppercase' }}>
-                — La opción completa
-              </span>
-              <h3 style={{ margin: '6px 0 4px', fontSize: '1.3rem' }}>Evento completo</h3>
-              <p style={{ margin: 0, opacity: 0.8, fontSize: '0.92rem', maxWidth: '440px' }}>
-                Comida, decoración, equipo y servicio de meseros, todo incluido en un solo paquete.
-              </p>
-            </div>
+            <span style={{ display: 'block', fontSize: '0.78rem', letterSpacing: '0.08em', opacity: 0.7, textTransform: 'uppercase' }}>
+              — La opción completa
+            </span>
+            <h3 style={{ margin: '6px 0 4px', fontSize: '1.3rem' }}>Evento completo: paquete todo incluido</h3>
+            <p style={{ margin: '0 0 4px', opacity: 0.85, fontSize: '0.92rem', maxWidth: '560px' }}>
+              Disfrute de su celebración sin preocuparse por los detalles. Nos encargamos de la
+              alimentación, decoración, equipo, mobiliario, menaje, montaje, desmontaje y
+              servicio de meseros.
+            </p>
+            <p style={{ margin: '0 0 16px', opacity: 0.85, fontSize: '0.92rem', maxWidth: '560px' }}>
+              Una solución integral y personalizada para que usted se dedique únicamente a
+              compartir y disfrutar con sus invitados.
+            </p>
+
+            <span style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '8px' }}>
+              Incluye:
+            </span>
+            <ul style={{ listStyle: 'none', margin: '0 0 22px', padding: 0, display: 'grid', gap: '6px' }}>
+              {EVENTO_COMPLETO_INCLUYE.map((it) => (
+                <li key={it} style={{ display: 'flex', alignItems: 'baseline', gap: '8px', fontSize: '0.88rem', opacity: 0.85 }}>
+                  <span style={{ opacity: 0.5 }}>—</span>
+                  {it}
+                </li>
+              ))}
+            </ul>
+
             <Boton
               as="a"
               className="boton--claro"
               href={`https://wa.me/${CONTACTO.telefonoWa}?text=${encodeURIComponent(
-                'Hola, quisiera cotizar el evento completo (comida, decoración, equipo y meseros).'
+                'Hola, quisiera cotizar el paquete todo incluido (evento completo).'
               )}`}
               target="_blank"
               rel="noreferrer"
             >
-              <IconWhatsApp /> Cotizar evento completo
+              <IconWhatsApp /> Cotizar paquete todo incluido
             </Boton>
           </div>
 
           <p className="nota-seccion" style={{ marginBottom: '16px' }}>
-            ¿Prefiere armar su propio servicio? Marque lo que necesita por aparte:
+            Arme su servicio ideal: seleccione todo lo que necesita y solicite una cotización
+            personalizada.
           </p>
 
           <div className="selector-servicios">
@@ -809,7 +892,7 @@ function EligeTuServicio() {
               target="_blank"
               rel="noreferrer"
             >
-              <IconWhatsApp /> {seleccion.length > 0 ? 'Cotizar selección' : 'Consultar servicios'}
+              <IconWhatsApp /> Personalizar y cotizar mi evento
             </Boton>
           </div>
         </Reveal>
@@ -928,10 +1011,20 @@ function Menu() {
 
         {(filtro === 'Todos' || filtro === 'Platos fuertes') && (
           <Reveal>
+            <p className="nota-seccion" style={{ marginBottom: 0 }}>
+              El plato fuerte incluye una carne y tres guarniciones a elección:
+            </p>
+            <Desplegable
+              titulo="Carnes a elegir"
+              subtitulo="Seleccione 1 para el plato fuerte"
+              items={CARNES}
+              nota="* Estas opciones tienen un costo adicional."
+            />
             <Desplegable
               titulo="Guarniciones incluidas"
-              subtitulo="El plato fuerte incluye 3 guarniciones a elegir de esta lista"
-              items={GUARNICIONES}
+              subtitulo="Seleccione 3 para el plato fuerte"
+              grupos={GUARNICIONES_GRUPOS}
+              nota="* Esta opción tiene un costo adicional."
             />
           </Reveal>
         )}
@@ -1041,7 +1134,7 @@ function Galeria() {
    FORMULARIO DE CONTRATACIÓN
    ================================================================= */
 
-const TIPOS_EVENTO = ['Boda', 'Evento corporativo', 'Cumpleaños', 'Cóctel / recepción', 'Otro']
+const TIPOS_EVENTO = ['Boda', 'Evento corporativo', 'Cumpleaños', 'Baby shower', 'Celebración especial', 'Otro']
 
 function FormularioContratar() {
   const [datos, setDatos] = useState({
@@ -1050,8 +1143,10 @@ function FormularioContratar() {
     correo: '',
     tipoEvento: '',
     fecha: '',
-    invitados: '',
     lugar: '',
+    invitados: '',
+    servicios: '',
+    presupuesto: '',
     mensaje: '',
   })
 
@@ -1066,17 +1161,20 @@ function FormularioContratar() {
     if (!listoParaEnviar) return
 
     const lineas = [
-      'Hola, quisiera contratar el servicio de Catering Alba. Estos son mis datos:',
+      '¡Hola, Catering Service Alba! Me gustaría solicitar una cotización.',
       '',
       `Nombre: ${datos.nombre}`,
       `Teléfono: ${datos.telefono}`,
+      `Tipo de evento: ${datos.tipoEvento}`,
+      `Fecha: ${datos.fecha}`,
+      `Lugar: ${datos.lugar}`,
+      `Cantidad de invitados aproximados: ${datos.invitados}`,
+      `Servicios que necesito: ${datos.servicios}`,
+      `Presupuesto aproximado: ${datos.presupuesto}`,
+      `Comentarios o ideas especiales: ${datos.mensaje}`,
+      '',
+      'Quedo pendiente de su propuesta. ¡Muchas gracias!',
     ]
-    if (datos.correo) lineas.push(`Correo: ${datos.correo}`)
-    if (datos.tipoEvento) lineas.push(`Tipo de evento: ${datos.tipoEvento}`)
-    if (datos.fecha) lineas.push(`Fecha del evento: ${datos.fecha}`)
-    if (datos.invitados) lineas.push(`Número de invitados: ${datos.invitados}`)
-    if (datos.lugar) lineas.push(`Lugar: ${datos.lugar}`)
-    if (datos.mensaje) lineas.push('', `Detalles adicionales: ${datos.mensaje}`)
 
     const mensaje = lineas.join('\n')
     window.open(`https://wa.me/${CONTACTO.telefonoWa}?text=${encodeURIComponent(mensaje)}`, '_blank')
@@ -1088,11 +1186,12 @@ function FormularioContratar() {
         <Reveal>
           <div className="cabecera-seccion">
             <div>
-              <span className="ojo-etiqueta ojo-etiqueta--claro">— Contrate su evento</span>
-              <h2 className="titulo-seccion titulo-seccion--claro">Cuéntenos de su evento</h2>
+              <span className="ojo-etiqueta ojo-etiqueta--claro">— Solicite su cotización</span>
+              <h2 className="titulo-seccion titulo-seccion--claro">Solicite su cotización</h2>
             </div>
             <p className="nota-seccion nota-seccion--clara">
-              Complete sus datos y le escribimos por WhatsApp con una propuesta.
+              Complete los datos de su evento y envíe la solicitud directamente por WhatsApp.
+              Será un gusto conocer sus ideas y preparar una propuesta personalizada.
             </p>
           </div>
         </Reveal>
@@ -1101,7 +1200,7 @@ function FormularioContratar() {
           <form className="formulario" onSubmit={enviarPorWhatsApp}>
             <div className="formulario__rejilla">
               <label className="formulario__campo">
-                <span>Nombre completo *</span>
+                <span>Nombre *</span>
                 <input
                   type="text"
                   value={datos.nombre}
@@ -1123,7 +1222,7 @@ function FormularioContratar() {
               </label>
 
               <label className="formulario__campo">
-                <span>Correo electrónico</span>
+                <span>Correo</span>
                 <input
                   type="email"
                   value={datos.correo}
@@ -1143,12 +1242,22 @@ function FormularioContratar() {
               </label>
 
               <label className="formulario__campo">
-                <span>Fecha del evento</span>
+                <span>Fecha</span>
                 <input type="date" value={datos.fecha} onChange={actualizar('fecha')} />
               </label>
 
               <label className="formulario__campo">
-                <span>Número de invitados</span>
+                <span>Lugar</span>
+                <input
+                  type="text"
+                  value={datos.lugar}
+                  onChange={actualizar('lugar')}
+                  placeholder="Salón, dirección o zona"
+                />
+              </label>
+
+              <label className="formulario__campo">
+                <span>Cantidad de invitados aproximados</span>
                 <input
                   type="number"
                   min="1"
@@ -1158,29 +1267,39 @@ function FormularioContratar() {
                 />
               </label>
 
-              <label className="formulario__campo formulario__campo--ancho">
-                <span>Lugar del evento</span>
+              <label className="formulario__campo">
+                <span>Presupuesto aproximado</span>
                 <input
                   type="text"
-                  value={datos.lugar}
-                  onChange={actualizar('lugar')}
-                  placeholder="Salón, dirección o zona"
+                  value={datos.presupuesto}
+                  onChange={actualizar('presupuesto')}
+                  placeholder="Ej. ₡500,000"
                 />
               </label>
 
               <label className="formulario__campo formulario__campo--ancho">
-                <span>Detalles adicionales</span>
+                <span>Servicios que necesita</span>
+                <input
+                  type="text"
+                  value={datos.servicios}
+                  onChange={actualizar('servicios')}
+                  placeholder="Ej. evento completo, solo comida, solo decoración..."
+                />
+              </label>
+
+              <label className="formulario__campo formulario__campo--ancho">
+                <span>Comentarios o ideas especiales</span>
                 <textarea
                   rows={4}
                   value={datos.mensaje}
                   onChange={actualizar('mensaje')}
-                  placeholder="Menú deseado, presupuesto aproximado, alguna solicitud especial..."
+                  placeholder="Cuéntenos cómo imagina su celebración..."
                 />
               </label>
             </div>
 
             <Boton as="button" type="submit" className="boton--claro" disabled={!listoParaEnviar}>
-              <IconWhatsApp /> Enviar por WhatsApp
+              <IconWhatsApp /> Enviar solicitud por WhatsApp
             </Boton>
           </form>
         </Reveal>
