@@ -252,63 +252,21 @@ function LogoAlba({ tamano = 64 }) {
 
 function CostaRicaRibbon() {
   return (
-    <>
-      {/* Cinta esquina superior izquierda */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '90px',
-          height: '90px',
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          zIndex: 20,
-        }}
-      >
-        <svg
-          viewBox="0 0 90 90"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: '100%', height: '100%' }}
-        >
-          <g transform="rotate(-45 0 0) translate(-20,-10)">
-            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
-            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
-            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
-          </g>
-        </svg>
-      </div>
-
-      {/* Cinta esquina superior derecha */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '90px',
-          height: '90px',
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          zIndex: 20,
-        }}
-      >
-        <svg
-          viewBox="0 0 90 90"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: '100%', height: '100%' }}
-        >
-          <g transform="rotate(45 90 0) translate(-50,-10)">
-            <rect x="0" y="0" width="140" height="7" fill="#002B7F" />
-            <rect x="0" y="7" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="11" width="140" height="10" fill="#CE1126" />
-            <rect x="0" y="21" width="140" height="4" fill="#FFFFFF" />
-            <rect x="0" y="25" width="140" height="7" fill="#002B7F" />
-          </g>
-        </svg>
-      </div>
-    </>
+    <div
+      style={{
+        width: '100%',
+        height: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      aria-hidden="true"
+    >
+      <div style={{ flex: '2 0 0', background: '#002B7F' }} />
+      <div style={{ flex: '1 0 0', background: '#FFFFFF' }} />
+      <div style={{ flex: '3 0 0', background: '#CE1126' }} />
+      <div style={{ flex: '1 0 0', background: '#FFFFFF' }} />
+      <div style={{ flex: '2 0 0', background: '#002B7F' }} />
+    </div>
   )
 }
 
@@ -1328,10 +1286,8 @@ export default function App() {
 
   return (
     <div className="pagina">
-      <div style={{ position: 'relative' }}>
-        <CostaRicaRibbon />
-        <Header activo={activo} irA={irA} />
-      </div>
+      <CostaRicaRibbon />
+      <Header activo={activo} irA={irA} />
       <Hero irA={irA} />
       <Nosotros />
       <Servicios />
