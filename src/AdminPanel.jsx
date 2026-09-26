@@ -48,7 +48,8 @@ function AdminLogin({ onEntrar }) {
         <form onSubmit={enviar}>
           <input
             type="password"
-            inputMode="numeric"
+            autoCapitalize="none"
+            autoCorrect="off"
             value={pin}
             onChange={(e) => {
               setPin(e.target.value)
