@@ -200,7 +200,7 @@ function CintaCostaRica() {
     <div
       style={{
         width: '100%',
-        height: '7px',
+        height: '14px',
         background:
           'linear-gradient(to bottom, #002B7F 0%, #002B7F 16.66%, #FFFFFF 16.66%, #FFFFFF 33.33%, #CE1126 33.33%, #CE1126 66.66%, #FFFFFF 66.66%, #FFFFFF 83.33%, #002B7F 83.33%, #002B7F 100%)',
       }}
