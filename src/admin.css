@@ -355,15 +355,27 @@
   position: absolute;
   top: 6px;
   right: 6px;
-  background: rgba(0, 0, 0, 0.6);
+  background: #c33;
   color: #fff;
-  border: none;
+  border: 2px solid #fff;
   border-radius: 8px;
-  width: 26px;
-  height: 26px;
+  padding: 5px 9px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
   line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.admin-galeria-item__aviso {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 3px 7px;
+  border-radius: 6px;
 }
 
 .admin-galeria-item__tipo {
