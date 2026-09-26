@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { CATEGORIAS_MENU, useMenu, useGaleria, useContenido, guardarSolicitud } from './contenido'
 
 /* =================================================================
-   DATOS — Catering Alba
+   DATOS FIJOS — no se editan desde el panel de administración
    ================================================================= */
 
 const CONTACTO = {
@@ -19,24 +20,6 @@ const NAV = [
   { id: 'contacto', label: 'Contacto' },
 ]
 
-const NOSOTROS_INTRO =
-  'En Catering Service Alba somos mucho más que un servicio de alimentación: diseñamos experiencias completas para bodas, eventos corporativos, cumpleaños, baby showers y todo tipo de celebraciones especiales con más de 15 años de experiencia. Nos encargamos de la alimentación, decoración, mantelería, montaje, desmontaje y atención durante el evento. Brindamos nuestro servicio en todo Costa Rica, llevando calidad, elegancia y atención personalizada hasta el lugar de su evento.'
-
-const PILARES = [
-  {
-    num: '01',
-    titulo: 'Nuestra filosofía',
-    texto:
-      'Creemos que cada celebración debe reflejar la esencia de quienes la viven. Por eso, unimos sabores, decoración y atención personalizada para crear ambientes especiales, donde cada elemento tenga un propósito y cada detalle cuente una historia.',
-  },
-  {
-    num: '02',
-    titulo: 'Nuestro compromiso',
-    texto:
-      'Nos comprometemos a ofrecer un servicio integral e impecable, cuidando cada detalle desde la planificación hasta la finalización del evento. Nuestro propósito es brindarle tranquilidad, calidad y confianza para que disfrute plenamente de su celebración, mientras nuestro equipo se encarga de hacer realidad todo lo que imaginó.',
-  },
-]
-
 const CARACTERISTICAS = [
   { titulo: 'Sabor auténtico', texto: 'Recetas elaboradas con ingredientes frescos y de temporada.' },
   { titulo: 'Presentación impecable', texto: 'Montaje elegante que realza cada plato y cada mesa.' },
@@ -44,47 +27,9 @@ const CARACTERISTICAS = [
   { titulo: 'Menú a la medida', texto: 'Adaptamos cada propuesta al tipo de evento y número de invitados.' },
 ]
 
-const SERVICIOS = [
-  {
-    num: '01',
-    titulo: 'Bodas',
-    texto:
-      'Creamos bodas únicas y memorables, cuidando la alimentación, decoración, montaje y cada detalle de ese día tan especial.',
-    cta: 'Cotizar mi boda',
-  },
-  {
-    num: '02',
-    titulo: 'Eventos corporativos',
-    texto:
-      'Diseñamos experiencias profesionales para reuniones, capacitaciones, inauguraciones, cenas empresariales y celebraciones corporativas.',
-    cta: 'Cotizar evento corporativo',
-  },
-  {
-    num: '03',
-    titulo: 'Cumpleaños',
-    texto:
-      'Convertimos cada cumpleaños en una celebración especial con deliciosos menús, decoración y un servicio completamente personalizado.',
-    cta: 'Cotizar cumpleaños',
-  },
-  {
-    num: '04',
-    titulo: 'Baby showers',
-    texto:
-      'Creamos una celebración dulce y especial para recibir al nuevo integrante de la familia, con alimentación, decoración y detalles llenos de ternura.',
-    cta: 'Cotizar baby shower',
-  },
-  {
-    num: '05',
-    titulo: 'Celebraciones especiales',
-    texto:
-      'Aniversarios, graduaciones, primeras comuniones, bautizos y cualquier ocasión que merezca celebrarse de una manera inolvidable.',
-    cta: 'Cotizar mi celebración',
-  },
-]
-
 const HERO_FONDOS = ['/hero-fondo.jpg']
 
-const CATEGORIAS = ['Todos', 'Brindis', 'Dip de bienvenida', 'Entradas', 'Carnes', 'Guarniciones', 'Ensaladas', 'Postres']
+const CATEGORIAS = ['Todos', ...CATEGORIAS_MENU]
 
 const CARRUSEL = [
   { img: '/galeria/evento-05.jpeg', etiqueta: 'Bodas', titulo: 'Montajes de boda' },
@@ -92,126 +37,6 @@ const CARRUSEL = [
   { img: '/galeria/evento-16.jpeg', etiqueta: 'Detalles', titulo: 'Ambientación a la medida' },
   { img: '/galeria/evento-04.jpeg', etiqueta: 'Eventos', titulo: 'Salones completos' },
   { img: '/galeria/evento-10.jpeg', etiqueta: 'Mesas', titulo: 'Centros de mesa florales' },
-]
-
-const MENU = [
-  // Brindis
-  { nombre: 'Brindis de bienvenida', categoria: 'Brindis', desc: 'Vino espumoso sin alcohol.' },
-
-  // Dip de bienvenida
-  { nombre: 'Dip de atún', categoria: 'Dip de bienvenida', desc: 'Dip de atún con mayonesa, acompañado de tortillas tipo chips.' },
-  { nombre: 'Dip de frijoles molidos', categoria: 'Dip de bienvenida', desc: 'Acompañado de tortillas tipo chips.' },
-  { nombre: 'Dulce de frutas con queso crema', categoria: 'Dip de bienvenida', desc: 'Acompañado de galletas saladas.' },
-  { nombre: 'Entrada capresse', categoria: 'Entradas', desc: 'Pan tostado con tomate, queso y albahaca fresca.', imagen: '/menu/entrada-capresse.jpg' },
-  { nombre: 'Sensación de piña', categoria: 'Dip de bienvenida', desc: 'Acompañada de galletas saladas.' },
-
-  // Entradas (bocadillos, sopas y cremas)
-  { nombre: 'Bocadillos para el café', categoria: 'Entradas', desc: 'Repostería dulce y repostería salada.' },
-  { nombre: 'Sopa azteca', categoria: 'Entradas', desc: 'Con aguacate, queso y tortillas tostadas.' },
-  { nombre: 'Sopa de garbanzos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
-  { nombre: 'Sopa de frijoles blancos con pollo o cerdo', categoria: 'Entradas', desc: 'A elegir con pollo o cerdo.' },
-  { nombre: 'Crema de ayote, brócoli o papa', categoria: 'Entradas', desc: 'Cremas suaves a elegir como entrada.' },
-
-  // Carnes (el plato fuerte incluye 1 carne a elección)
-  { nombre: 'Carne en salsa', categoria: 'Carnes', desc: '' },
-  { nombre: 'Mano de piedra en salsa de hongos', categoria: 'Carnes', desc: '', extra: true },
-  { nombre: 'Pollo a la reina', categoria: 'Carnes', desc: '' },
-  { nombre: 'Pollo a la plancha en salsa blanca', categoria: 'Carnes', desc: '' },
-  { nombre: 'Pollo a la plancha en salsa pomodoro', categoria: 'Carnes', desc: '' },
-  { nombre: 'Cordon bleu', categoria: 'Carnes', desc: '', extra: true },
-  { nombre: 'Lomo de cerdo en salsa BBQ o agridulce', categoria: 'Carnes', desc: '', imagen: '/menu/lomo-cerdo-bbq.jpg' },
-  { nombre: 'Lomo de cerdo relleno', categoria: 'Carnes', desc: '', extra: true },
-  { nombre: 'Lomo de res relleno', categoria: 'Carnes', desc: '', extra: true },
-
-  // Guarniciones (arroces y acompañamientos — el plato fuerte incluye 3 a elección)
-  { nombre: 'Arroz blanco', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Arroz con maíz dulce', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Arroz con culantro', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Arroz jardinero', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Arroz con almendras', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Puré de papa', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Arracache', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Verduras salteadas en mantequilla', categoria: 'Guarniciones', desc: '', imagen: '/menu/verduras-salteadas.jpg' },
-  { nombre: 'Papas pequeñas a la mantequilla', categoria: 'Guarniciones', desc: '' },
-  { nombre: 'Escabeche en salsa de tomate', categoria: 'Guarniciones', desc: '' },
-
-  // Ensaladas
-  { nombre: 'Ensalada verde', categoria: 'Ensaladas', desc: '' },
-  { nombre: 'Ensalada mixta', categoria: 'Ensaladas', desc: '' },
-  { nombre: 'Ensalada verde con frutas', categoria: 'Ensaladas', desc: '', extra: true },
-  { nombre: 'Ensalada rusa', categoria: 'Ensaladas', desc: '' },
-  { nombre: 'Ensalada fría de caracolitos', categoria: 'Ensaladas', desc: '' },
-
-  // Postres
-  { nombre: 'Cheesecake frío de fresa', categoria: 'Postres', desc: 'Postre frío con base de galleta y fresa fresca.' },
-  { nombre: 'Tentación de mora', categoria: 'Postres', desc: 'Postre cremoso con mora de temporada.' },
-  { nombre: 'Postre de frutas', categoria: 'Postres', desc: 'Selección de frutas frescas de temporada.' },
-  { nombre: 'Mousse de fruta de temporada', categoria: 'Postres', desc: 'Textura ligera y aireada, según la fruta disponible.', imagen: '/menu/mousse-temporada.jpg' },
-  { nombre: 'Postre de malvaviscos', categoria: 'Postres', desc: 'Postre tradicional a base de malvaviscos.' },
-  { nombre: 'Mosaico de gelatinas', categoria: 'Postres', desc: 'Coloridas capas de gelatina en textura mosaico.' },
-  { nombre: 'Cheesecake de Oreo', categoria: 'Postres', desc: 'Cheesecake con base y trozos de galleta Oreo.' },
-  { nombre: 'Delicia de piña', categoria: 'Postres', desc: 'Postre fresco a base de piña.' },
-]
-
-const EVENTO_COMPLETO_INCLUYE = [
-  'Menú personalizado con brindis, dip de bienvenida, bocadillos coffee breaks, entrada, plato fuerte, postre y refrescos',
-  'Decoración del evento básica',
-  'Mantelería con manteles, cubresillas y telas',
-  'Vajilla, cubiertos y cristalería',
-  'Equipo para servir y conservar los alimentos',
-  'Montaje y desmontaje',
-  'Servicio de meseros',
-]
-
-const BENEFICIOS = EVENTO_COMPLETO_INCLUYE
-
-const OPCIONES_SERVICIO = [
-  'Servicio de alimentación',
-  'Alimentación a domicilio',
-  'Decoración de eventos',
-  'Arreglos florales',
-  'Alquiler de bases para centros de mesa',
-  'Alquiler de equipo',
-  'Alquiler de mantelería',
-  'Alquiler de vajilla y cristalería',
-  'Alquiler de percoladores',
-  'Alquiler de baños María',
-]
-
-const GALERIA = [
-  { tipo: 'foto', src: '/galeria/evento-03.jpeg', thumb: '/galeria/evento-03-thumb.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video.mp4', thumb: '/galeria/evento-video-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-2.mp4', thumb: '/galeria/evento-video-2-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-3.mp4', thumb: '/galeria/evento-video-3-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-4.mp4', thumb: '/galeria/evento-video-4-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-5.mp4', thumb: '/galeria/evento-video-5-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-6.mp4', thumb: '/galeria/evento-video-6-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-7.mp4', thumb: '/galeria/evento-video-7-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-8.mp4', thumb: '/galeria/evento-video-8-poster.jpeg' },
-  { tipo: 'video', src: '/galeria/evento-video-9.mp4', thumb: '/galeria/evento-video-9-poster.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-16.jpeg', thumb: '/galeria/evento-16-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-04.jpeg', thumb: '/galeria/evento-04-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-05.jpeg', thumb: '/galeria/evento-05-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-02.jpeg', thumb: '/galeria/evento-02-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-01.jpeg', thumb: '/galeria/evento-01-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-06.jpeg', thumb: '/galeria/evento-06-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-07.jpeg', thumb: '/galeria/evento-07-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-13.jpeg', thumb: '/galeria/evento-13-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-09.jpeg', thumb: '/galeria/evento-09-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-10.jpeg', thumb: '/galeria/evento-10-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-11.jpeg', thumb: '/galeria/evento-11-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-12.jpeg', thumb: '/galeria/evento-12-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-17.jpeg', thumb: '/galeria/evento-17-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-20.jpeg', thumb: '/galeria/evento-20-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-08.jpeg', thumb: '/galeria/evento-08-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-14.jpeg', thumb: '/galeria/evento-14-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-15.jpeg', thumb: '/galeria/evento-15-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-18.jpeg', thumb: '/galeria/evento-18-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-19.jpeg', thumb: '/galeria/evento-19-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-21.jpeg', thumb: '/galeria/evento-21-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-22.jpeg', thumb: '/galeria/evento-22-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-23.jpeg', thumb: '/galeria/evento-23-thumb.jpeg' },
-  { tipo: 'foto', src: '/galeria/evento-24.jpeg', thumb: '/galeria/evento-24-thumb.jpeg' },
 ]
 
 /* =================================================================
@@ -356,127 +181,13 @@ function IconFlecha({ direccion = 'izq' }) {
   )
 }
 
-function IconChevron() {
+function IconMaletin() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M6 9l6 6 6-6" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <rect x="3" y="7.5" width="18" height="12" rx="2" />
+      <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" />
+      <path d="M3 12.5h18" />
     </svg>
-  )
-}
-
-/* =================================================================
-   DESPLEGABLE — para listas largas (ej. guarniciones)
-   ================================================================= */
-
-function ListaDesplegable({ items }) {
-  return (
-    <ul
-      style={{
-        listStyle: 'none',
-        margin: 0,
-        padding: 0,
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-        gap: '8px 20px',
-      }}
-    >
-      {items.map((it) => {
-        const esObjeto = typeof it === 'object'
-        const label = esObjeto ? it.nombre : it
-        const extra = esObjeto && it.extra
-        return (
-          <li
-            key={label}
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: '8px',
-              fontSize: '0.92rem',
-              opacity: 0.85,
-            }}
-          >
-            <span style={{ opacity: 0.5 }}>—</span>
-            <span>
-              {label}
-              {extra && <span style={{ opacity: 0.55 }}> *</span>}
-            </span>
-          </li>
-        )
-      })}
-    </ul>
-  )
-}
-
-function Desplegable({ titulo, subtitulo, items, grupos, nota }) {
-  const [abierto, setAbierto] = useState(false)
-
-  return (
-    <div
-      style={{
-        marginTop: '28px',
-        border: '1px solid rgba(0,0,0,0.12)',
-        borderRadius: '14px',
-        overflow: 'hidden',
-        background: '#fff',
-      }}
-    >
-      <button
-        type="button"
-        onClick={() => setAbierto((v) => !v)}
-        aria-expanded={abierto}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '16px',
-          padding: '18px 22px',
-          background: 'transparent',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-        }}
-      >
-        <span>
-          <span style={{ display: 'block', fontSize: '1.05rem', fontWeight: 600 }}>{titulo}</span>
-          {subtitulo && (
-            <span style={{ display: 'block', fontSize: '0.85rem', opacity: 0.65, marginTop: '2px' }}>
-              {subtitulo}
-            </span>
-          )}
-        </span>
-        <span
-          style={{
-            display: 'inline-flex',
-            transition: 'transform 0.25s ease',
-            transform: abierto ? 'rotate(180deg)' : 'rotate(0deg)',
-            flexShrink: 0,
-          }}
-        >
-          <IconChevron />
-        </span>
-      </button>
-
-      {abierto && (
-        <div style={{ padding: '0 22px 20px' }}>
-          {grupos ? (
-            grupos.map((g, i) => (
-              <div key={g.titulo} style={{ marginTop: i === 0 ? 0 : '18px' }}>
-                <h4 style={{ margin: '0 0 8px', fontSize: '0.85rem', opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  {g.titulo}
-                </h4>
-                <ListaDesplegable items={g.items} />
-              </div>
-            ))
-          ) : (
-            <ListaDesplegable items={items} />
-          )}
-          {nota && (
-            <p style={{ margin: '16px 0 0', fontSize: '0.8rem', opacity: 0.55 }}>{nota}</p>
-          )}
-        </div>
-      )}
-    </div>
   )
 }
 
@@ -574,7 +285,7 @@ function Header({ activo, irA }) {
    HERO
    ================================================================= */
 
-function Hero({ irA }) {
+function Hero({ irA, contenido }) {
   return (
     <section
       id="inicio"
@@ -597,18 +308,15 @@ function Hero({ irA }) {
       <div className="hero__textura" style={{ zIndex: 1, position: 'relative' }} />
       <div className="envoltura hero__contenido" style={{ position: 'relative', zIndex: 2 }}>
         <Reveal>
-          <span className="ojo-etiqueta ojo-etiqueta--claro">— Más que catering, creamos experiencias inolvidables</span>
+          <span className="ojo-etiqueta ojo-etiqueta--claro">{contenido.heroEtiqueta}</span>
         </Reveal>
         <Reveal delay={80}>
           <h1 className="hero__titulo">
-            Catering <em>Alba</em>
+            {contenido.heroTitulo.split(' ')[0]} <em>{contenido.heroTitulo.split(' ').slice(1).join(' ')}</em>
           </h1>
         </Reveal>
         <Reveal delay={160}>
-          <p className="hero__subtitulo">
-            Alimentación, decoración, y atención integral para bodas, eventos corporativos,
-            cumpleaños, baby showers y celebraciones especiales en todo Costa Rica.
-          </p>
+          <p className="hero__subtitulo">{contenido.heroSubtitulo}</p>
         </Reveal>
         <Reveal delay={240}>
           <div className="hero__acciones">
@@ -640,7 +348,7 @@ function Hero({ irA }) {
    NOSOTROS
    ================================================================= */
 
-function Nosotros() {
+function Nosotros({ contenido }) {
   return (
     <section id="nosotros" className="seccion seccion--clara">
       <div className="envoltura">
@@ -652,14 +360,14 @@ function Nosotros() {
             </div>
           </div>
           <p className="nota-seccion" style={{ maxWidth: '760px', marginTop: '-8px', marginBottom: '32px' }}>
-            {NOSOTROS_INTRO}
+            {contenido.nosotrosIntro}
           </p>
         </Reveal>
 
         <div className="rejilla-pilares">
-          {PILARES.map((p, i) => (
-            <Reveal key={p.num} delay={i * 100}>
-              <div className="tarjeta-pilar" data-num={p.num}>
+          {contenido.pilares.map((p, i) => (
+            <Reveal key={p.titulo} delay={i * 100}>
+              <div className="tarjeta-pilar" data-num={String(i + 1).padStart(2, '0')}>
                 <h3 className="tarjeta-pilar__titulo">{p.titulo}</h3>
                 <p className="tarjeta-pilar__texto">{p.texto}</p>
               </div>
@@ -690,7 +398,7 @@ function Nosotros() {
    SERVICIOS
    ================================================================= */
 
-function Servicios() {
+function Servicios({ contenido }) {
   return (
     <section id="servicios" className="seccion seccion--oscura">
       <div className="envoltura">
@@ -707,11 +415,11 @@ function Servicios() {
         </Reveal>
 
         <div className="rejilla-servicios">
-          {SERVICIOS.map((s, i) => (
-            <Reveal key={s.num} delay={i * 100}>
-              <div className="tarjeta-pilar tarjeta-pilar--servicio tarjeta-pilar--oscura" data-num={s.num}>
+          {contenido.servicios.map((s, i) => (
+            <Reveal key={s.titulo} delay={i * 100}>
+              <div className="tarjeta-pilar tarjeta-pilar--servicio tarjeta-pilar--oscura" data-num={String(i + 1).padStart(2, '0')}>
                 <div className="tarjeta-pilar__cabecera">
-                  <span className="tarjeta-pilar__num">{s.num}</span>
+                  <span className="tarjeta-pilar__num">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 <h3 className="tarjeta-pilar__titulo">{s.titulo}</h3>
                 <p className="tarjeta-pilar__texto">{s.texto}</p>
@@ -738,7 +446,7 @@ function Servicios() {
    ELIJA SU SERVICIO
    ================================================================= */
 
-function EligeTuServicio() {
+function EligeTuServicio({ contenido }) {
   const [seleccion, setSeleccion] = useState([])
 
   const alternar = (op) => {
@@ -797,7 +505,7 @@ function EligeTuServicio() {
               Incluye:
             </span>
             <ul style={{ listStyle: 'none', margin: '0 0 22px', padding: 0, display: 'grid', gap: '6px' }}>
-              {EVENTO_COMPLETO_INCLUYE.map((it) => (
+              {contenido.eventoCompletoIncluye.map((it) => (
                 <li key={it} style={{ display: 'flex', alignItems: 'baseline', gap: '8px', fontSize: '0.88rem', opacity: 0.85 }}>
                   <span style={{ opacity: 0.5 }}>—</span>
                   {it}
@@ -824,7 +532,7 @@ function EligeTuServicio() {
           </p>
 
           <div className="selector-servicios">
-            {OPCIONES_SERVICIO.map((op) => {
+            {contenido.opcionesServicio.map((op) => {
               const activo = seleccion.includes(op)
               return (
                 <button
@@ -920,11 +628,11 @@ function Carrusel() {
    MENÚ
    ================================================================= */
 
-function Menu() {
+function Menu({ items }) {
   const [filtro, setFiltro] = useState('Todos')
-  const items = filtro === 'Todos' ? MENU : MENU.filter((m) => m.categoria === filtro)
+  const visibles = filtro === 'Todos' ? items : items.filter((m) => m.categoria === filtro)
   const mostrarNotaPlatoFuerte = filtro === 'Carnes' || filtro === 'Guarniciones' || filtro === 'Ensaladas'
-  const hayExtraEnVista = items.some((m) => m.extra)
+  const hayExtraEnVista = visibles.some((m) => m.extra)
 
   return (
     <section id="menu" className="seccion seccion--clara">
@@ -964,8 +672,8 @@ function Menu() {
         )}
 
         <div className="rejilla-puestos">
-          {items.map((m, i) => (
-            <Reveal key={m.nombre} delay={(i % 4) * 80}>
+          {visibles.map((m, i) => (
+            <Reveal key={m.id || m.nombre} delay={(i % 4) * 80}>
               <div className="tarjeta-puesto">
                 {m.imagen && (
                   <div className="tarjeta-puesto__foto">
@@ -997,26 +705,26 @@ function Menu() {
    GALERÍA
    ================================================================= */
 
-function Galeria() {
+function Galeria({ items }) {
   const [abierto, setAbierto] = useState(null)
 
   const abrir = (i) => setAbierto(i)
   const cerrar = () => setAbierto(null)
   const anterior = (e) => {
     e.stopPropagation()
-    setAbierto((i) => (i - 1 + GALERIA.length) % GALERIA.length)
+    setAbierto((i) => (i - 1 + items.length) % items.length)
   }
   const siguiente = (e) => {
     e.stopPropagation()
-    setAbierto((i) => (i + 1) % GALERIA.length)
+    setAbierto((i) => (i + 1) % items.length)
   }
 
   useEffect(() => {
     if (abierto === null) return
     const onKey = (e) => {
       if (e.key === 'Escape') cerrar()
-      if (e.key === 'ArrowLeft') setAbierto((i) => (i - 1 + GALERIA.length) % GALERIA.length)
-      if (e.key === 'ArrowRight') setAbierto((i) => (i + 1) % GALERIA.length)
+      if (e.key === 'ArrowLeft') setAbierto((i) => (i - 1 + items.length) % items.length)
+      if (e.key === 'ArrowRight') setAbierto((i) => (i + 1) % items.length)
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -1024,9 +732,9 @@ function Galeria() {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [abierto])
+  }, [abierto, items.length])
 
-  const item = abierto !== null ? GALERIA[abierto] : null
+  const item = abierto !== null ? items[abierto] : null
 
   return (
     <section id="galeria" className="seccion seccion--oscura">
@@ -1044,8 +752,8 @@ function Galeria() {
         </Reveal>
 
         <div className="rejilla-galeria">
-          {GALERIA.map((g, i) => (
-            <Reveal key={g.src} delay={(i % 6) * 60}>
+          {items.map((g, i) => (
+            <Reveal key={g.id || g.src} delay={(i % 6) * 60}>
               <button className="galeria-item" onClick={() => abrir(i)} aria-label="Ver imagen">
                 <img src={g.thumb} alt="Evento Catering Alba" />
                 {g.tipo === 'video' && (
@@ -1109,6 +817,7 @@ function FormularioContratar() {
     presupuesto: '',
     mensaje: '',
   })
+  const [enviando, setEnviando] = useState(false)
 
   const actualizar = (campo) => (e) => {
     setDatos((prev) => ({ ...prev, [campo]: e.target.value }))
@@ -1116,9 +825,19 @@ function FormularioContratar() {
 
   const listoParaEnviar = datos.nombre.trim() !== '' && datos.telefono.trim() !== ''
 
-  const enviarPorWhatsApp = (e) => {
+  const enviarPorWhatsApp = async (e) => {
     e.preventDefault()
-    if (!listoParaEnviar) return
+    if (!listoParaEnviar || enviando) return
+    setEnviando(true)
+
+    // Guarda la solicitud en la base de datos para que quede visible en el
+    // panel de administración. Si falla (sin internet, etc.) no bloquea el
+    // envío por WhatsApp, que sigue siendo la vía principal.
+    try {
+      await guardarSolicitud(datos)
+    } catch (err) {
+      console.error('No se pudo guardar la solicitud:', err)
+    }
 
     const lineas = [
       '¡Hola, Catering Service Alba! Me gustaría solicitar una cotización.',
@@ -1138,6 +857,7 @@ function FormularioContratar() {
 
     const mensaje = lineas.join('\n')
     window.open(`https://wa.me/${CONTACTO.telefonoWa}?text=${encodeURIComponent(mensaje)}`, '_blank')
+    setEnviando(false)
   }
 
   return (
@@ -1258,8 +978,8 @@ function FormularioContratar() {
               </label>
             </div>
 
-            <Boton as="button" type="submit" className="boton--claro" disabled={!listoParaEnviar}>
-              <IconWhatsApp /> Enviar solicitud por WhatsApp
+            <Boton as="button" type="submit" className="boton--claro" disabled={!listoParaEnviar || enviando}>
+              <IconWhatsApp /> {enviando ? 'Enviando…' : 'Enviar solicitud por WhatsApp'}
             </Boton>
           </form>
         </Reveal>
@@ -1272,7 +992,7 @@ function FormularioContratar() {
    CONTACTO
    ================================================================= */
 
-function Contacto() {
+function Contacto({ contenido }) {
   return (
     <section id="contacto" className="seccion-cta">
       <div className="envoltura">
@@ -1285,7 +1005,7 @@ function Contacto() {
                 propuesta de menú y precio sin compromiso.
               </p>
               <ul className="cta-caja__lista">
-                {BENEFICIOS.map((b) => (
+                {contenido.eventoCompletoIncluye.map((b) => (
                   <li key={b}>{b}</li>
                 ))}
               </ul>
@@ -1318,7 +1038,7 @@ function Contacto() {
    FOOTER
    ================================================================= */
 
-function Pie() {
+function Pie({ contenido }) {
   return (
     <footer className="pie">
       <div className="envoltura pie__fila">
@@ -1327,23 +1047,13 @@ function Pie() {
           <span>Catering Alba</span>
         </div>
         <div className="pie__distritos">
-          {SERVICIOS.map((s) => (
-            <span key={s.num}>{s.titulo}</span>
+          {contenido.servicios.map((s) => (
+            <span key={s.titulo}>{s.titulo}</span>
           ))}
         </div>
         <span className="pie__copy">© {new Date().getFullYear()} Catering Alba</span>
       </div>
     </footer>
-  )
-}
-
-function IconMaletin() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <rect x="3" y="7.5" width="18" height="12" rx="2" />
-      <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" />
-      <path d="M3 12.5h18" />
-    </svg>
   )
 }
 
@@ -1373,6 +1083,9 @@ function BotonContratar() {
 
 export default function App() {
   const [activo, setActivo] = useState('inicio')
+  const { items: menuItems } = useMenu()
+  const { items: galeriaItems } = useGaleria()
+  const { datos: contenido } = useContenido()
 
   const irA = (id) => {
     setActivo(id)
@@ -1383,15 +1096,15 @@ export default function App() {
   return (
     <div className="pagina">
       <Header activo={activo} irA={irA} />
-      <Hero irA={irA} />
-      <Nosotros />
-      <Servicios />
-      <EligeTuServicio />
-      <Menu />
-      <Galeria />
+      <Hero irA={irA} contenido={contenido} />
+      <Nosotros contenido={contenido} />
+      <Servicios contenido={contenido} />
+      <EligeTuServicio contenido={contenido} />
+      <Menu items={menuItems} />
+      <Galeria items={galeriaItems} />
       <FormularioContratar />
-      <Contacto />
-      <Pie />
+      <Contacto contenido={contenido} />
+      <Pie contenido={contenido} />
       <BotonContratar />
     </div>
   )
