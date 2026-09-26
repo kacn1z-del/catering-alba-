@@ -192,6 +192,23 @@ function IconMaletin() {
 }
 
 /* =================================================================
+   CINTA COSTA RICA — franja delgada decorativa arriba de todo
+   ================================================================= */
+
+function CintaCostaRica() {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '7px',
+        background:
+          'linear-gradient(to bottom, #002B7F 0%, #002B7F 16.66%, #FFFFFF 16.66%, #FFFFFF 33.33%, #CE1126 33.33%, #CE1126 66.66%, #FFFFFF 66.66%, #FFFFFF 83.33%, #002B7F 83.33%, #002B7F 100%)',
+      }}
+    />
+  )
+}
+
+/* =================================================================
    HEADER
    ================================================================= */
 
@@ -1095,6 +1112,7 @@ export default function App() {
 
   return (
     <div className="pagina">
+      <CintaCostaRica />
       <Header activo={activo} irA={irA} />
       <Hero irA={irA} contenido={contenido} />
       <Nosotros contenido={contenido} />
