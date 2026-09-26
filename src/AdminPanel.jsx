@@ -340,16 +340,14 @@ function TabGaleria() {
       <div className="admin-galeria-rejilla">
         {items.map((g) => (
           <div className="admin-galeria-item" key={g.id || g.src}>
-            {g.tipo === 'video' ? (
-              <video src={g.src} muted />
-            ) : (
-              <img src={g.thumb || g.src} alt="" />
-            )}
+            <img src={g.thumb || g.src} alt="" />
             <span className="admin-galeria-item__tipo">{g.tipo}</span>
-            {g.id && (
+            {g.id ? (
               <button className="admin-galeria-item__borrar" onClick={() => borrar(g.id)} aria-label="Borrar">
-                ×
+                × Borrar
               </button>
+            ) : (
+              <span className="admin-galeria-item__aviso">Sin guardar</span>
             )}
           </div>
         ))}
