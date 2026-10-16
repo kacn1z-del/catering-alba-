@@ -42,6 +42,9 @@ export function subirACloudinary(file, onProgress) {
 
     const xhr = new XMLHttpRequest()
     xhr.open('POST', url)
+    // Si por mala señal el archivo se queda "pegado" subiendo, lo cortamos
+    // a los 2 minutos en vez de dejarlo colgado para siempre.
+    xhr.timeout = 120000
 
     xhr.upload.onprogress = (e) => {
       if (onProgress && e.lengthComputable) {
@@ -63,6 +66,7 @@ export function subirACloudinary(file, onProgress) {
     }
 
     xhr.onerror = () => reject(new Error('Error de red subiendo el archivo a Cloudinary.'))
+    xhr.ontimeout = () => reject(new Error('La subida tardó demasiado y se canceló. Revisá tu conexión e intentá de nuevo.'))
     xhr.send(formData)
   })
 }
