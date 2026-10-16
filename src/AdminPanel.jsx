@@ -285,26 +285,43 @@ function TabGaleria() {
   const { items, cargando, usandoRespaldo } = useGaleria()
   const [subiendo, setSubiendo] = useState(false)
   const [progreso, setProgreso] = useState(0)
+  const [actual, setActual] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const subir = async (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const archivos = Array.from(e.target.files || [])
+    if (archivos.length === 0) return
     setSubiendo(true)
-    setProgreso(0)
-    try {
-      const esVideo = file.type.startsWith('video/')
-      const url = await subirACloudinary(file, setProgreso)
-      await agregarItemGaleria({
-        tipo: esVideo ? 'video' : 'foto',
-        src: url,
-        thumb: esVideo ? posterDeVideoCloudinary(url) : url,
-        orden: Date.now(),
-      })
-    } catch (err) {
-      alert('No se pudo subir el archivo: ' + err.message)
+    setTotal(archivos.length)
+
+    const fallidos = []
+    for (let i = 0; i < archivos.length; i++) {
+      const file = archivos[i]
+      setActual(i + 1)
+      setProgreso(0)
+      try {
+        const esVideo = file.type.startsWith('video/')
+        const url = await subirACloudinary(file, setProgreso)
+        await agregarItemGaleria({
+          tipo: esVideo ? 'video' : 'foto',
+          src: url,
+          thumb: esVideo ? posterDeVideoCloudinary(url) : url,
+          orden: Date.now() + i,
+        })
+      } catch (err) {
+        fallidos.push(`${file.name}: ${err.message}`)
+      }
     }
+
     setSubiendo(false)
+    setActual(0)
+    setTotal(0)
+    setProgreso(0)
     e.target.value = ''
+
+    if (fallidos.length > 0) {
+      alert('Algunos archivos no se pudieron subir:\n\n' + fallidos.join('\n'))
+    }
   }
 
   const borrar = async (id) => {
@@ -321,10 +338,11 @@ function TabGaleria() {
       <div className="admin-seccion-titulo">
         <h2>Galería</h2>
         <label className="admin-boton admin-boton--oro" style={{ cursor: 'pointer' }}>
-          {subiendo ? `Subiendo… ${progreso}%` : '+ Subir foto o video'}
+          {subiendo ? `Subiendo ${actual}/${total}… ${progreso}%` : '+ Subir fotos o videos'}
           <input
             type="file"
             accept="image/*,video/*"
+            multiple
             onChange={subir}
             disabled={subiendo}
             style={{ display: 'none' }}
