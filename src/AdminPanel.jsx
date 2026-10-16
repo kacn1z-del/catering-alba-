@@ -83,7 +83,7 @@ function AvisoRespaldo({ onSembrar, cargando, etiqueta }) {
     setEnProceso(false)
   }
 
-  if (cargando) return null
+  if (cargando || !etiqueta) return null
 
   return (
     <div className="admin-aviso">
