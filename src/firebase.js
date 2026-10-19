@@ -8,7 +8,7 @@
 // =====================================================================
 
 import { initializeApp, getApps, getApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { initializeFirestore, getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBLVHsF0VqPorPkK0auaWUH_4-k-loC6iU',
@@ -22,5 +22,14 @@ const firebaseConfig = {
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
 
-export const db = getFirestore(app)
+// Safari en iPhone a veces bloquea la conexión normal de Firestore y las
+// escrituras se quedan "pegadas" sin confirmarse. El modo de detección
+// automática de "long polling" evita ese problema.
+let _db
+try {
+  _db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true })
+} catch {
+  _db = getFirestore(app)
+}
+export const db = _db
 export default app
