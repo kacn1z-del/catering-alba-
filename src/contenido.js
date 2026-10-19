@@ -362,7 +362,13 @@ export async function borrarPlato(id) {
 }
 
 export async function agregarItemGaleria(item) {
-  await addDoc(collection(db, COL_GALERIA), item)
+  // Si el servidor tarda en confirmar, no dejamos la pantalla pegada:
+  // la escritura ya quedó en cola y se sincroniza sola apenas haya señal.
+  const escritura = addDoc(collection(db, COL_GALERIA), item)
+  await Promise.race([
+    escritura,
+    new Promise((resolve) => setTimeout(resolve, 15000)),
+  ])
 }
 
 export async function actualizarItemGaleria(id, cambios) {
