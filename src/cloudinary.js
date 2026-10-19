@@ -31,7 +31,30 @@ export const CLOUDINARY_UPLOAD_PRESET = 'cateringalbafotos'
  * @param {(pct:number)=>void} [onProgress] opcional, 0-100
  * @returns {Promise<string>} URL del archivo
  */
-export function subirACloudinary(file, onProgress) {
+/**
+ * Reduce fotos grandes del celular (máx. 1920px de lado) antes de subirlas,
+ * para que suban rápido aunque la señal sea mala. Los videos no se tocan.
+ */
+async function reducirImagen(file) {
+  if (!file.type.startsWith('image/') || file.type === 'image/gif') return file
+  try {
+    const bitmap = await createImageBitmap(file)
+    const MAX = 1920
+    const escala = Math.min(1, MAX / Math.max(bitmap.width, bitmap.height))
+    if (escala === 1 && file.size < 1.5 * 1024 * 1024) return file
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.round(bitmap.width * escala)
+    canvas.height = Math.round(bitmap.height * escala)
+    canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height)
+    const blob = await new Promise((res) => canvas.toBlob(res, 'image/jpeg', 0.85))
+    return blob || file
+  } catch {
+    return file
+  }
+}
+
+export async function subirACloudinary(archivoOriginal, onProgress) {
+  const file = await reducirImagen(archivoOriginal)
   return new Promise((resolve, reject) => {
     const esVideo = file.type.startsWith('video/')
     const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${esVideo ? 'video' : 'image'}/upload`
