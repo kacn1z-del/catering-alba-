@@ -1654,3 +1654,19 @@ a {
     height: 54px;
   }
 }
+
+.pie__redes {
+  display: flex;
+  gap: 18px;
+}
+
+.pie__redes a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+}
+
+.pie__redes a:hover {
+  opacity: 1;
+}
