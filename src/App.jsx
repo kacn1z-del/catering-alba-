@@ -11,6 +11,11 @@ const CONTACTO = {
   telefonoTel: '+50686672245',
 }
 
+const REDES = {
+  facebook: 'https://www.facebook.com/share/1HkVeXQpjS/?mibextid=wwXIfr',
+  instagram: 'https://www.instagram.com/catering.alba',
+}
+
 const NAV = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'nosotros', label: 'Nosotros' },
@@ -1067,6 +1072,14 @@ function Pie({ contenido }) {
           {contenido.servicios.map((s) => (
             <span key={s.titulo}>{s.titulo}</span>
           ))}
+        </div>
+        <div className="pie__redes">
+          <a href={REDES.facebook} target="_blank" rel="noreferrer">
+            Facebook
+          </a>
+          <a href={REDES.instagram} target="_blank" rel="noreferrer">
+            Instagram
+          </a>
         </div>
         <span className="pie__copy">© {new Date().getFullYear()} Catering Alba</span>
       </div>
